@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   title: "Audex — AI-Powered SEC Filing Intelligence",
   description:
     "Our multi-pass verification engine reads every claim in SEC filings and cross-references them against each other. When the numbers don't add up, we flag it.",
+  metadataBase: new URL("https://audex.tech"),
+  icons: {
+    icon: "/icon.svg",
+  },
   openGraph: {
     title: "Audex — AI-Powered SEC Filing Intelligence",
     description:
