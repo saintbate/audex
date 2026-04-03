@@ -21,7 +21,18 @@ const FLAGS: FlagData[] = [
     filingDate: "Feb 26, 2026",
     filingType: "10-K",
     topFinding:
-      "Revenue up 91% but margins only improved 15%. SDG&E recorded $651M regulatory charge.",
+      "Net income differs from XBRL by $122M (16.7%). Revenue discrepancy of $440M (15.2%) vs reported figures.",
+  },
+  {
+    ticker: "D",
+    anomaly: 54,
+    quality: 10,
+    signal: "STRONG SELL",
+    sector: "Utilities",
+    filingDate: "Feb 23, 2026",
+    filingType: "10-K",
+    topFinding:
+      "Continuing operations income ($3,012M) exceeds total net income ($2,998M) — logically inconsistent across multiple periods.",
   },
   {
     ticker: "UNH",
@@ -32,7 +43,29 @@ const FLAGS: FlagData[] = [
     filingDate: "Mar 2, 2026",
     filingType: "10-K",
     topFinding:
-      "Segment revenues exceed consolidated total by $173B. Medical Care Ratio deteriorated 710bps since 2022.",
+      "Segment revenues exceed consolidated total by $173B. Balance sheet gap of $4.4B — assets ≠ liabilities + equity.",
+  },
+  {
+    ticker: "VLO",
+    anomaly: 47,
+    quality: 16,
+    signal: "STRONG SELL",
+    sector: "Energy",
+    filingDate: "Feb 25, 2026",
+    filingType: "10-K",
+    topFinding:
+      "Segment operating income ($4,258M) exceeds company total ($3,181M) by $1.1B. California refinery impairment of $1.1B with no prior comparable.",
+  },
+  {
+    ticker: "AMT",
+    anomaly: 46,
+    quality: 23,
+    signal: "STRONG SELL",
+    sector: "Real Estate",
+    filingDate: "Feb 24, 2026",
+    filingType: "10-K",
+    topFinding:
+      "Revenue discrepancy of 1,300% between extracted ($2,818M) and XBRL ($185M) figures across multiple quarters.",
   },
   {
     ticker: "DUK",
@@ -43,7 +76,18 @@ const FLAGS: FlagData[] = [
     filingDate: "Feb 26, 2026",
     filingType: "10-K",
     topFinding:
-      "Segment revenues exceed total by $6.5B (20%). Segment net income discrepancy of $2B (41%).",
+      "Multiple conflicting EPS values: $3.33 vs $3.17 vs XBRL -$0.86. Operating income 403% above XBRL figure.",
+  },
+  {
+    ticker: "PSX",
+    anomaly: 42,
+    quality: 20,
+    signal: "STRONG SELL",
+    sector: "Energy",
+    filingDate: "Feb 20, 2026",
+    filingType: "10-K",
+    topFinding:
+      "AOCL reconciliation gap — OCI components don't bridge year-over-year. Tax breakdown doesn't sum to reported total.",
   },
   {
     ticker: "TMO",
@@ -54,7 +98,7 @@ const FLAGS: FlagData[] = [
     filingDate: "Feb 26, 2026",
     filingType: "10-K",
     topFinding:
-      "COVID testing revenue collapsed 97%. Life Sciences margins compressed from 50%+ to 32%.",
+      "Segment revenues sum to $11.5B but total revenue is $11.0B — $567M discrepancy. Repeated across multiple periods.",
   },
   {
     ticker: "LOW",
@@ -65,7 +109,7 @@ const FLAGS: FlagData[] = [
     filingDate: "Mar 23, 2026",
     filingType: "10-K",
     topFinding:
-      "Negative shareholder equity ($9.9B deficit). Comp sales declining: -4.3% to -7.4% across quarters.",
+      "Net earnings discrepancy: MD&A claims $6.0B but income statement shows $4.9B. A $1.1B gap in reported figures.",
   },
 ];
 
@@ -168,7 +212,7 @@ export default function RecentFlags() {
 
         <div className="text-center mt-8">
           <p className="text-sm text-muted">
-            21 companies analyzed · 9 flagged · 3,574 checks performed
+            40 companies analyzed · 18 flagged · 6,778 checks performed
           </p>
         </div>
       </div>
