@@ -61,14 +61,14 @@ export default function Hero() {
           <div className="h-8 w-px bg-border hidden sm:block" />
           <div>
             <div className="text-2xl sm:text-3xl font-mono font-bold text-red">
-              15
+              37
             </div>
             <div className="text-xs text-muted mt-1">Red Flags Issued</div>
           </div>
           <div className="h-8 w-px bg-border hidden sm:block" />
           <div>
             <div className="text-2xl sm:text-3xl font-mono font-bold text-foreground">
-              6,778
+              15,799
             </div>
             <div className="text-xs text-muted mt-1">Checks Performed</div>
           </div>
