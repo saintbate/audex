@@ -13,6 +13,17 @@ interface FlagData {
 
 const FLAGS: FlagData[] = [
   {
+    ticker: "D",
+    anomaly: 56,
+    quality: 11,
+    signal: "STRONG SELL",
+    sector: "Utilities",
+    filingDate: "Feb 23, 2026",
+    filingType: "10-K",
+    topFinding:
+      "Continuing operations income ($3,012M) exceeds total net income ($2,998M) — logically inconsistent. Worst quality score in universe (11). Confidence: 90%.",
+  },
+  {
     ticker: "SRE",
     anomaly: 54,
     quality: 13,
@@ -21,95 +32,84 @@ const FLAGS: FlagData[] = [
     filingDate: "Feb 26, 2026",
     filingType: "10-K",
     topFinding:
-      "Net income differs from XBRL by $122M (16.7%). Deterministic check confirms discrepancy. Unexplained in MD&A despite acquisition activity.",
+      "Net income differs from XBRL by $122M (16.7%). Deterministic check confirms. Unexplained in MD&A despite acquisition activity. Confidence: 90%.",
   },
   {
     ticker: "WELL",
-    anomaly: 53,
+    anomaly: 48,
     quality: 16,
     signal: "STRONG SELL",
     sector: "Real Estate",
     filingDate: "Feb 19, 2026",
     filingType: "10-K",
     topFinding:
-      "Multiple revenue recognition inconsistencies across segments. XBRL verification flagged $210M gap. Highest sector-adjusted anomaly in Real Estate.",
-  },
-  {
-    ticker: "D",
-    anomaly: 53,
-    quality: 11,
-    signal: "STRONG SELL",
-    sector: "Utilities",
-    filingDate: "Feb 23, 2026",
-    filingType: "10-K",
-    topFinding:
-      "Continuing operations income ($3,012M) exceeds total net income ($2,998M) — logically inconsistent. Worst quality score in coverage universe.",
+      "Multiple revenue recognition inconsistencies. XBRL verification flagged $210M gap. Highest sector-adjusted anomaly in Real Estate. Confidence: 80%.",
   },
   {
     ticker: "VLO",
-    anomaly: 46,
+    anomaly: 45,
     quality: 21,
     signal: "STRONG SELL",
     sector: "Energy",
     filingDate: "Feb 25, 2026",
     filingType: "10-K",
     topFinding:
-      "Segment operating income ($4,258M) exceeds company total ($3,181M) by $1.1B. Programmatic XBRL check confirms mismatch.",
+      "Segment operating income ($4,258M) exceeds company total ($3,181M) by $1.1B. Programmatic XBRL check confirms mismatch. Confidence: 80%.",
   },
   {
     ticker: "ORCL",
-    anomaly: 46,
+    anomaly: 45,
     quality: 31,
     signal: "STRONG SELL",
     sector: "Information Technology",
     filingDate: "Mar 11, 2026",
     filingType: "10-Q",
     topFinding:
-      "Cloud revenue recognition timing inconsistencies. Deferred revenue bridge doesn't reconcile. Sector-relative anomaly elevated vs IT peers.",
+      "Cloud revenue recognition timing inconsistencies. Deferred revenue bridge doesn't reconcile. FY ends May — sector-relative anomaly elevated vs IT peers.",
+  },
+  {
+    ticker: "AMT",
+    anomaly: 43,
+    quality: 28,
+    signal: "STRONG SELL",
+    sector: "Real Estate",
+    filingDate: "Feb 24, 2026",
+    filingType: "10-K",
+    topFinding:
+      "Revenue discrepancy partially explained by REIT structure, but $185M XBRL mismatch confirmed by deterministic check. Confidence: 80%.",
+  },
+  {
+    ticker: "JNJ",
+    anomaly: 43,
+    quality: 9,
+    signal: "STRONG SELL",
+    sector: "Health Care",
+    filingDate: "Feb 12, 2026",
+    filingType: "10-K",
+    topFinding:
+      "Lowest quality score in universe (9). FY ends January — fiscal-adjusted comparison shows elevated anomaly vs Health Care peers. Confidence: 80%.",
   },
   {
     ticker: "DUK",
-    anomaly: 40,
+    anomaly: 42,
     quality: 27,
     signal: "STRONG SELL",
     sector: "Utilities",
     filingDate: "Feb 26, 2026",
     filingType: "10-K",
     topFinding:
-      "Multiple conflicting EPS values across sections. Deteriorating momentum score (7.1) signals worsening trend over recent filings.",
+      "Multiple conflicting EPS values across sections. Momentum score 7.1 signals deteriorating trend. Deterministic checks confirm revenue gap.",
   },
   {
-    ticker: "JNJ",
+    ticker: "C",
     anomaly: 40,
-    quality: 9,
-    signal: "SELL",
-    sector: "Health Care",
-    filingDate: "Feb 12, 2026",
-    filingType: "10-K",
-    topFinding:
-      "Lowest quality score in universe (9). Multiple internal check failures. Health Care sector-relative anomaly significantly above peers.",
-  },
-  {
-    ticker: "PSX",
-    anomaly: 38,
-    quality: 37,
+    quality: 40,
     signal: "STRONG SELL",
-    sector: "Energy",
-    filingDate: "Feb 20, 2026",
+    sector: "Financials",
+    filingDate: "Feb 21, 2026",
     filingType: "10-K",
     topFinding:
-      "AOCL reconciliation gap — OCI components don't bridge year-over-year. Near-zero momentum (1.0) signals deterioration.",
-  },
-  {
-    ticker: "NVDA",
-    anomaly: 37,
-    quality: 39,
-    signal: "SELL",
-    sector: "Information Technology",
-    filingDate: "Feb 26, 2026",
-    filingType: "10-K",
-    topFinding:
-      "Revenue recognition timing discrepancies across segments. XBRL verification flagged partial match. Elevated vs IT sector baseline.",
+      "Net interest income components don't reconcile. Momentum score 8.3 signals deterioration. XBRL coverage high (confidence: 100%) — discrepancies are verified.",
   },
 ];
 
@@ -212,7 +212,7 @@ export default function RecentFlags() {
 
         <div className="text-center mt-8">
           <p className="text-sm text-muted mb-4">
-            97 companies analyzed · 37 flagged · 15,799 checks performed
+            97 companies analyzed · 38 flagged · 15,799 checks performed · confidence 60-100%
           </p>
           <a
             href="/leaderboard"
