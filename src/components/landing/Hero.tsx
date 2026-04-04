@@ -30,12 +30,10 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg sm:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
-          Our seven-layer verification engine cross-references every claim in a
-          company&apos;s 10-K and 10-Q filings against XBRL data, historical
-          filings, and management tone analysis — with sector-calibrated tolerance
-          for Financials, REITs, and Industrials and bank-aware accounting
-          checks. When the numbers don&apos;t add up, we flag it — before the
-          market does.
+          Every quarter, public companies file 200-page reports with the SEC.
+          We read every number, cross-reference every claim, and flag the
+          filings where the math doesn&apos;t add up — before the market
+          notices.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
