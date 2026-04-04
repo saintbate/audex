@@ -153,7 +153,7 @@ export default async function LeaderboardPage() {
                     <td className={`px-4 py-3 text-right ${r.checks_failed > 10 ? "text-red" : "text-muted"}`}>
                       {r.checks_failed}
                     </td>
-                    <td className="px-4 py-3 text-muted text-xs">{String(r.filing_date).slice(0, 10)}</td>
+                    <td className="px-4 py-3 text-muted text-xs">{r.filing_date instanceof Date ? r.filing_date.toISOString().slice(0, 10) : String(r.filing_date).slice(0, 10)}</td>
                   </tr>
                 ))}
               </tbody>

@@ -91,7 +91,14 @@ export default async function CompanyPage({
 
   if (rows.length === 0) notFound();
 
-  const report = rows[0] as unknown as Report;
+  const raw = rows[0] as Record<string, unknown>;
+  const report: Report = {
+    ...raw,
+    filing_date: raw.filing_date instanceof Date
+      ? raw.filing_date.toISOString().slice(0, 10)
+      : String(raw.filing_date).slice(0, 10),
+    published_at: String(raw.published_at),
+  } as Report;
   const signal = report.overall_signal.replace(/_/g, " ").toUpperCase();
   const findings: Finding[] = typeof report.key_findings === "string"
     ? JSON.parse(report.key_findings)
