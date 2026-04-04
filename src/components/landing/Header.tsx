@@ -33,7 +33,10 @@ export default function Header() {
           </span>
         </a>
         <nav className="hidden sm:flex items-center gap-6 text-sm text-muted">
-          <a href="#proof" className="hover:text-foreground transition-colors">
+          <a href="/leaderboard" className="hover:text-foreground transition-colors">
+            Leaderboard
+          </a>
+          <a href="/track-record" className="hover:text-foreground transition-colors">
             Track Record
           </a>
           <a href="#flags" className="hover:text-foreground transition-colors">

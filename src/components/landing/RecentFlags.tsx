@@ -152,7 +152,7 @@ function SignalBadge({ signal }: { signal: string }) {
 
 function FlagCard({ flag }: { flag: FlagData }) {
   return (
-    <div className="border border-border rounded-lg bg-surface p-5 hover:border-accent/30 transition-colors">
+    <a href={`/company/${flag.ticker}`} className="block border border-border rounded-lg bg-surface p-5 hover:border-accent/30 transition-colors">
       <div className="flex items-start justify-between mb-3">
         <div>
           <div className="flex items-center gap-2 mb-1">
@@ -181,7 +181,7 @@ function FlagCard({ flag }: { flag: FlagData }) {
       </div>
 
       <p className="text-sm text-muted leading-relaxed">{flag.topFinding}</p>
-    </div>
+    </a>
   );
 }
 
@@ -211,9 +211,15 @@ export default function RecentFlags() {
         </div>
 
         <div className="text-center mt-8">
-          <p className="text-sm text-muted">
+          <p className="text-sm text-muted mb-4">
             40 companies analyzed · 18 flagged · 6,778 checks performed
           </p>
+          <a
+            href="/leaderboard"
+            className="text-accent text-sm font-mono hover:underline"
+          >
+            View all company rankings &rarr;
+          </a>
         </div>
       </div>
     </section>

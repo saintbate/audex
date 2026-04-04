@@ -1,6 +1,27 @@
 "use client";
 
+import { useState } from "react";
+
 export default function Pricing() {
+  const [waitlistEmail, setWaitlistEmail] = useState("");
+  const [waitlistStatus, setWaitlistStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+
+  async function handleWaitlist(e: React.FormEvent) {
+    e.preventDefault();
+    if (!waitlistEmail) return;
+    setWaitlistStatus("loading");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: waitlistEmail, source: "pro_waitlist" }),
+      });
+      setWaitlistStatus(res.ok ? "done" : "error");
+    } catch {
+      setWaitlistStatus("error");
+    }
+  }
+
   return (
     <section id="pricing" className="py-20 px-6">
       <div className="mx-auto max-w-4xl">
@@ -62,12 +83,29 @@ export default function Pricing() {
               <PricingItem accent>Priority access to new features</PricingItem>
             </ul>
 
-            <button
-              disabled
-              className="block w-full text-center bg-accent/20 text-accent/60 px-6 py-3 rounded-lg font-semibold cursor-not-allowed"
-            >
-              Join Waitlist
-            </button>
+            {waitlistStatus === "done" ? (
+              <div className="text-center text-accent font-mono text-sm py-3">
+                You&apos;re on the list. We&apos;ll notify you at launch.
+              </div>
+            ) : (
+              <form onSubmit={handleWaitlist} className="flex gap-2">
+                <input
+                  type="email"
+                  placeholder="you@email.com"
+                  value={waitlistEmail}
+                  onChange={(e) => setWaitlistEmail(e.target.value)}
+                  required
+                  className="flex-1 bg-background border border-border rounded-lg px-3 py-3 text-sm font-mono text-foreground placeholder:text-muted focus:outline-none focus:border-accent/50"
+                />
+                <button
+                  type="submit"
+                  disabled={waitlistStatus === "loading"}
+                  className="bg-accent text-background px-5 py-3 rounded-lg font-semibold hover:bg-accent-dim transition-colors text-sm whitespace-nowrap disabled:opacity-50"
+                >
+                  {waitlistStatus === "loading" ? "..." : "Join"}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </div>
