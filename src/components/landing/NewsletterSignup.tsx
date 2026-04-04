@@ -79,7 +79,7 @@ export default function NewsletterSignup() {
         )}
 
         <p className="text-xs text-muted mt-4">
-          No spam. Just data. ~700 subscribers and counting.
+          No spam. Just data. Unsubscribe anytime.
         </p>
       </div>
     </section>
