@@ -1,16 +1,34 @@
 "use client";
 
 const BACKTEST_DATA = [
-  { signal: "Strong Buy", n: 5, alpha: "+25.6%", hitRate: "80.0%", color: "text-green" },
-  { signal: "Buy", n: 17, alpha: "-2.0%", hitRate: "41.2%", color: "text-muted" },
-  { signal: "Hold", n: 93, alpha: "-5.5%", hitRate: "—", color: "text-muted" },
-  { signal: "Sell", n: 66, alpha: "-9.9%", hitRate: "66.7%", color: "text-red" },
   {
     signal: "Strong Sell",
-    n: 49,
-    alpha: "-16.3%",
-    hitRate: "69.4%",
+    n: 71,
+    alpha: "-9.5%",
+    hitRate: "72%",
     color: "text-red",
+  },
+  { signal: "Sell", n: 96, alpha: "-7.6%", hitRate: "70%", color: "text-red" },
+  {
+    signal: "Hold",
+    n: 157,
+    alpha: "-3.7%",
+    hitRate: "—",
+    color: "text-muted",
+  },
+  {
+    signal: "Buy",
+    n: 22,
+    alpha: "-3.0%",
+    hitRate: "41%",
+    color: "text-muted",
+  },
+  {
+    signal: "Strong Buy",
+    n: 6,
+    alpha: "+17.8%",
+    hitRate: "67%",
+    color: "text-green",
   },
 ];
 
@@ -20,19 +38,19 @@ export default function BacktestProof() {
       <div className="mx-auto max-w-4xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            The signal is real
+            The sell signal works
           </h2>
           <p className="text-muted text-lg max-w-2xl mx-auto">
-            Backtested across 97 S&P 500 companies and 5 filing windows.
-            Strong signals separate by{" "}
-            <span className="text-accent font-mono font-semibold">
-              +41.9pp
-            </span>
-            . Strong Sell averaged{" "}
+            Backtested across 97 companies and 352 observations. Sell signals
+            underperform SPY by{" "}
             <span className="text-red font-mono font-semibold">
-              -16.3% alpha
+              -8.4% alpha
             </span>{" "}
-            vs SPY with a 69% hit rate.
+            with{" "}
+            <span className="text-accent font-mono font-semibold">
+              71% accuracy
+            </span>
+            . This is a risk filter — it tells you what to avoid.
           </p>
         </div>
 
@@ -42,7 +60,7 @@ export default function BacktestProof() {
             <div className="h-3 w-3 rounded-full bg-amber/60" />
             <div className="h-3 w-3 rounded-full bg-green/60" />
             <span className="ml-3 text-xs font-mono text-muted">
-              backtest_results.csv — 230 observations, 12-month holding period
+              backtest_results — 352 observations, 12-month holding period
             </span>
           </div>
 
@@ -65,9 +83,7 @@ export default function BacktestProof() {
                     <td className="px-6 py-4">
                       <span className={row.color}>{row.signal}</span>
                     </td>
-                    <td className="px-6 py-4 text-right text-muted">
-                      {row.n}
-                    </td>
+                    <td className="px-6 py-4 text-right text-muted">{row.n}</td>
                     <td className={`px-6 py-4 text-right ${row.color}`}>
                       {row.alpha}
                     </td>
@@ -83,7 +99,8 @@ export default function BacktestProof() {
           <div className="px-6 py-3 border-t border-border bg-surface-2">
             <p className="text-xs font-mono text-muted">
               Hit rate = % where signal direction matched 12-month outcome vs
-              SPY. Data: 2020–2026, 5 filing windows, multiple market regimes.
+              SPY. Data: 2020–2026, 5 filing windows. Buy signal is not
+              predictive — a clean filing ≠ a good stock.
             </p>
           </div>
         </div>

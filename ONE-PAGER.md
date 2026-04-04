@@ -1,6 +1,6 @@
 # AUDEX
 
-**AI-powered SEC filing intelligence. We read every number. We check every claim.**
+**Automated risk intelligence for SEC filings. We read every number. We check every claim.**
 
 ---
 
@@ -27,50 +27,46 @@ Audex is a six-layer verification engine that reads every quantitative claim in 
 | 5. Explanation Check | Contextualizes discrepancies using MD&A text and 8-K filings | Claude Haiku |
 | 6. Scoring | Sector-relative anomaly, quality, momentum, composite risk signal | Deterministic |
 
-Each company receives a **sector-adjusted anomaly score** (how inconsistent vs peers), a **quality score** (how clean are the numbers), a **momentum score** (improving or deteriorating), and a **composite risk signal** (strong sell → strong buy).
+Each company receives a **risk assessment**: sector-adjusted anomaly score, quality score, momentum score, confidence level (60-100%), and a composite signal.
 
-**What makes it different:**
-- **Deterministic ground truth** — 2,092 programmatic XBRL checks with fixed tolerances, not just LLM opinions
-- **Sector-relative scoring** — adjusts for industry-specific filing complexity (utilities ≠ tech)
-- **Composite risk signals** — both anomaly AND quality must be bad to flag; eliminates false positives from one-dimensional thresholds
+**This is a risk filter, not a stock picker.** A clean filing doesn't mean the stock goes up. But a messy filing — where the numbers contradict each other — is predictive of underperformance.
 
-## Proof: The Signal Is Real
+## Proof: The Sell Signal Works
 
-Backtested across **97 S&P 500 companies**, **230 observations**, **5 filing windows**, and multiple market regimes (2020–2026):
+Backtested across **97 S&P 500 companies**, **352 observations**, **5 filing windows** (2020–2026):
 
 | Signal | N | 12M Alpha vs SPY | Hit Rate |
 |--------|---|-----------------|----------|
-| Strong Buy | 5 | **+25.6%** | 80.0% |
-| Buy | 17 | -2.0% | 41.2% |
-| Hold | 93 | -5.5% | — |
-| Sell | 66 | **-9.9%** | 66.7% |
-| Strong Sell | 49 | **-16.3%** | 69.4% |
+| Strong Sell | 71 | **-9.5%** | 72% |
+| Sell | 96 | **-7.6%** | 70% |
+| Hold | 157 | -3.7% | — |
+| Buy | 22 | -3.0% | 41% |
+| Strong Buy | 6 | +17.8% | 67% |
 
-Companies flagged as "strong sell" underperform the S&P 500 by an average of 16.3% over the following 12 months with a 69% hit rate. The strong buy – strong sell spread is **+41.9 percentage points**. The engine is strongest at its highest-conviction calls and holds across every holding period (3M, 6M, 12M).
+Companies flagged as "sell" or "strong sell" underperform the S&P 500 by an average of **8.4%** over 12 months with **71% accuracy** (n=167). This holds across every filing window and holding period tested.
 
-**Honest caveat:** The moderate "buy" signal is not yet predictive (-2.0% alpha). The engine is better at finding problems than confirming cleanliness — which makes sense for a verification system.
+**Honest caveat:** The "buy" signal is not predictive (-3.0% alpha, 41% hit rate). A clean filing means the accounting is sound — not that the stock will outperform. The value is entirely on the sell side: avoiding the companies whose filings don't add up.
 
 ## Live Results — Q1 2026
 
 Running on **97 S&P 500 companies** from Q1 2026 filings:
 
 - **15,799 automated checks** performed (2,092 deterministic + 13,707 LLM-verified)
-- **13 Strong Sell** signals: SRE, WELL, D, VLO, ORCL, JNJ, DUK, PSX, C, XEL, ADBE, AMT, NEE
+- **13 Strong Sell** signals: D, SRE, WELL, VLO, ORCL, JNJ, DUK, AMT, PSX, C, XEL, ADBE, NEE
 - **25 Sell** signals including: NVDA, UNH, TSLA, BAC, EQIX
-- **37 Hold** signals
-- **18 Buy** signals including: GOOGL, META, XOM, NFLX, CSCO
-- **4 Strong Buy** signals: APD, JPM, BKNG, NFLX
+- **37 Hold** signals — accounting looks clean, not a buy recommendation
+- **18 Buy / 4 Strong Buy** signals — for reference only
 - **Confidence scores** range from 60% to 100% based on XBRL verification coverage
 - **18 non-calendar fiscal year** companies identified and normalized
 
-Top flag: **Sempra Energy ($SRE)** — sector-adjusted anomaly 54/100, quality 13/100, confidence 90%. Net income differs from XBRL by $122M (16.7%). Deterministic check confirms. Revenue discrepancy unexplained in MD&A.
+Top flag: **Dominion Energy ($D)** — sector-adjusted anomaly 56/100, quality 11/100 (worst in universe), confidence 90%. Continuing operations income exceeds total net income — logically inconsistent.
 
 ## Business Model
 
 | Tier | Price | What You Get |
 |------|-------|-------------|
-| **Free** | $0 | Weekly newsletter (top 5 flags), public leaderboard, track record |
-| **Pro** | $15/mo | Full reports for all S&P 500 companies, real-time alerts, searchable database, historical archive |
+| **Free** | $0 | Weekly newsletter (top red flags), public leaderboard, track record |
+| **Pro** | $15/mo | Full reports for all S&P 500 companies, real-time alerts, searchable database, historical archive, confidence scores |
 
 Revenue scales linearly: each new company analyzed adds content for free tier (audience) and paid tier (value). At 1,000 Pro subscribers = $180K ARR.
 
