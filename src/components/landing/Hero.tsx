@@ -54,14 +54,14 @@ export default function Hero() {
         <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 text-center">
           <div>
             <div className="text-2xl sm:text-3xl font-mono font-bold text-accent">
-              40
+              97
             </div>
             <div className="text-xs text-muted mt-1">Companies Scanned</div>
           </div>
           <div className="h-8 w-px bg-border hidden sm:block" />
           <div>
             <div className="text-2xl sm:text-3xl font-mono font-bold text-red">
-              18
+              15
             </div>
             <div className="text-xs text-muted mt-1">Red Flags Issued</div>
           </div>

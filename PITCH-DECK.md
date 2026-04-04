@@ -73,7 +73,22 @@ Signal separation holds across bear markets, recoveries, bull rallies, and conso
 
 ---
 
-## SLIDE 6: Live Results
+## SLIDE 6: Known Limitations & Roadmap to Fix
+
+**We know where the engine breaks — and how to fix it.**
+
+| Limitation | Cause | Fix (Next 90 Days) |
+|-----------|-------|-------------------|
+| ~30% false positive rate | LLM confuses cumulative vs quarterly figures | Add pre-check validation layer to filter known extraction patterns |
+| Fiscal year misalignment | Companies like Nike (May FY) vs calendar-year peers | Normalize all comparisons to fiscal period, not calendar date |
+| Uneven XBRL quality | Some companies use custom extensions or inconsistent tags | Build an XBRL coverage index; weight Pass 2 confidence by tag quality |
+| No intent understanding | Engine flags discrepancies, can't distinguish restatements from fraud | Pair with 8-K amendment detection and management commentary analysis |
+
+**The architecture is right. The tuning is what v2 is about.**
+
+---
+
+## SLIDE 7: Live Results
 
 **Q1 2026: 40 companies, 6,778 checks, 18 flags.**
 
@@ -91,7 +106,7 @@ Signal separation holds across bear markets, recoveries, bull rallies, and conso
 
 ---
 
-## SLIDE 7: Product
+## SLIDE 8: Product
 
 **Free tier → audience. Pro tier → revenue.**
 
@@ -104,7 +119,7 @@ Already live: audex.tech
 
 ---
 
-## SLIDE 8: Business Model
+## SLIDE 9: Business Model
 
 **Content flywheel: every filing analyzed creates free content AND paid value.**
 
@@ -125,7 +140,7 @@ New filing drops
 
 ---
 
-## SLIDE 9: Market Opportunity
+## SLIDE 10: Market Opportunity
 
 **$500B+ in losses from accounting fraud and financial misstatement annually (ACFE estimates).**
 
@@ -138,7 +153,7 @@ The market for financial data intelligence (Bloomberg, S&P Capital IQ, Refinitiv
 
 ---
 
-## SLIDE 10: Traction
+## SLIDE 11: Traction
 
 *(Update these numbers as they grow)*
 
@@ -151,7 +166,7 @@ The market for financial data intelligence (Bloomberg, S&P Capital IQ, Refinitiv
 
 ---
 
-## SLIDE 11: Roadmap
+## SLIDE 12: Roadmap
 
 **Now → 3 months → 12 months**
 
@@ -164,7 +179,7 @@ The market for financial data intelligence (Bloomberg, S&P Capital IQ, Refinitiv
 
 ---
 
-## SLIDE 12: The Ask
+## SLIDE 13: The Ask
 
 **$50,000**
 
@@ -175,7 +190,7 @@ The market for financial data intelligence (Bloomberg, S&P Capital IQ, Refinitiv
 
 ---
 
-## SLIDE 13: Team
+## SLIDE 14: Team
 
 **Nick Bateman** — Solo founder
 
@@ -183,7 +198,7 @@ Built the full stack: SEC EDGAR ingestion pipeline, multi-pass LLM analysis engi
 
 ---
 
-## SLIDE 14: Close
+## SLIDE 15: Close
 
 **AUDEX**
 *The numbers should add up. We check if they do.*

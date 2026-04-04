@@ -14,19 +14,19 @@ interface FlagData {
 const FLAGS: FlagData[] = [
   {
     ticker: "SRE",
-    anomaly: 57,
-    quality: 9,
+    anomaly: 46,
+    quality: 15,
     signal: "STRONG SELL",
     sector: "Utilities",
     filingDate: "Feb 26, 2026",
     filingType: "10-K",
     topFinding:
-      "Net income differs from XBRL by $122M (16.7%). Revenue discrepancy of $440M (15.2%) vs reported figures.",
+      "Net income differs from XBRL by $122M (16.7%). Revenue discrepancy unexplained in MD&A despite acquisition activity.",
   },
   {
     ticker: "D",
-    anomaly: 54,
-    quality: 10,
+    anomaly: 44,
+    quality: 15,
     signal: "STRONG SELL",
     sector: "Utilities",
     filingDate: "Feb 23, 2026",
@@ -35,54 +35,32 @@ const FLAGS: FlagData[] = [
       "Continuing operations income ($3,012M) exceeds total net income ($2,998M) — logically inconsistent across multiple periods.",
   },
   {
-    ticker: "UNH",
-    anomaly: 49,
-    quality: 26,
-    signal: "SELL",
-    sector: "Health Care",
-    filingDate: "Mar 2, 2026",
-    filingType: "10-K",
-    topFinding:
-      "Segment revenues exceed consolidated total by $173B. Balance sheet gap of $4.4B — assets ≠ liabilities + equity.",
-  },
-  {
     ticker: "VLO",
-    anomaly: 47,
-    quality: 16,
+    anomaly: 37,
+    quality: 20,
     signal: "STRONG SELL",
     sector: "Energy",
     filingDate: "Feb 25, 2026",
     filingType: "10-K",
     topFinding:
-      "Segment operating income ($4,258M) exceeds company total ($3,181M) by $1.1B. California refinery impairment of $1.1B with no prior comparable.",
-  },
-  {
-    ticker: "AMT",
-    anomaly: 46,
-    quality: 23,
-    signal: "STRONG SELL",
-    sector: "Real Estate",
-    filingDate: "Feb 24, 2026",
-    filingType: "10-K",
-    topFinding:
-      "Revenue discrepancy of 1,300% between extracted ($2,818M) and XBRL ($185M) figures across multiple quarters.",
+      "Segment operating income ($4,258M) exceeds company total ($3,181M) by $1.1B. Impairment charge not fully reconciled.",
   },
   {
     ticker: "DUK",
-    anomaly: 44,
-    quality: 21,
-    signal: "STRONG SELL",
+    anomaly: 34,
+    quality: 32,
+    signal: "SELL",
     sector: "Utilities",
     filingDate: "Feb 26, 2026",
     filingType: "10-K",
     topFinding:
-      "Multiple conflicting EPS values: $3.33 vs $3.17 vs XBRL -$0.86. Operating income 403% above XBRL figure.",
+      "Multiple conflicting EPS values across sections. Operating income gap partially explained by regulatory accounting.",
   },
   {
     ticker: "PSX",
-    anomaly: 42,
-    quality: 20,
-    signal: "STRONG SELL",
+    anomaly: 34,
+    quality: 32,
+    signal: "SELL",
     sector: "Energy",
     filingDate: "Feb 20, 2026",
     filingType: "10-K",
@@ -90,26 +68,48 @@ const FLAGS: FlagData[] = [
       "AOCL reconciliation gap — OCI components don't bridge year-over-year. Tax breakdown doesn't sum to reported total.",
   },
   {
-    ticker: "TMO",
-    anomaly: 41,
-    quality: 20,
-    signal: "STRONG SELL",
-    sector: "Health Care",
-    filingDate: "Feb 26, 2026",
+    ticker: "AMT",
+    anomaly: 34,
+    quality: 35,
+    signal: "SELL",
+    sector: "Real Estate",
+    filingDate: "Feb 24, 2026",
     filingType: "10-K",
     topFinding:
-      "Segment revenues sum to $11.5B but total revenue is $11.0B — $567M discrepancy. Repeated across multiple periods.",
+      "Revenue discrepancy between sections partially explained by REIT structure, but $185M XBRL mismatch remains unexplained.",
   },
   {
-    ticker: "LOW",
-    anomaly: 38,
-    quality: 20,
-    signal: "STRONG SELL",
-    sector: "Consumer Discretionary",
-    filingDate: "Mar 23, 2026",
+    ticker: "XEL",
+    anomaly: 30,
+    quality: 40,
+    signal: "SELL",
+    sector: "Utilities",
+    filingDate: "Feb 25, 2026",
     filingType: "10-K",
     topFinding:
-      "Net earnings discrepancy: MD&A claims $6.0B but income statement shows $4.9B. A $1.1B gap in reported figures.",
+      "Segment revenue reconciliation gaps across regulated utility subsidiaries. Rate case impacts not fully bridged.",
+  },
+  {
+    ticker: "ORCL",
+    anomaly: 28,
+    quality: 39,
+    signal: "SELL",
+    sector: "Information Technology",
+    filingDate: "Mar 11, 2026",
+    filingType: "10-Q",
+    topFinding:
+      "Cloud revenue recognition timing creates quarter-over-quarter inconsistencies in deferred revenue bridge.",
+  },
+  {
+    ticker: "WFC",
+    anomaly: 25,
+    quality: 33,
+    signal: "SELL",
+    sector: "Financials",
+    filingDate: "Feb 20, 2026",
+    filingType: "10-K",
+    topFinding:
+      "Net interest income components don't reconcile to reported NII total. Provision for credit losses methodology shift.",
   },
 ];
 
@@ -212,7 +212,7 @@ export default function RecentFlags() {
 
         <div className="text-center mt-8">
           <p className="text-sm text-muted mb-4">
-            40 companies analyzed · 18 flagged · 6,778 checks performed
+            97 companies analyzed · 15 flagged · 6,778 checks performed
           </p>
           <a
             href="/leaderboard"
