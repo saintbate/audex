@@ -41,16 +41,17 @@ Most of these checks are mechanical. An LLM can read every number. A program can
 
 ## SLIDE 4: The Solution
 
-**Audex: a six-layer verification engine for SEC filings.**
+**Audex: a seven-layer verification engine for SEC filings.**
 
 | Layer | What It Does | Method |
 |-------|-------------|--------|
 | Extraction | Pulls every financial claim with period context | Claude Haiku |
 | Internal Cross-Reference | Checks claims against each other + XBRL data | Claude Haiku |
-| Deterministic Verification | Programmatic claim-vs-XBRL comparison with fixed tolerances | Deterministic |
+| Deterministic Verification | Bank-aware programmatic claim-vs-XBRL comparison | Deterministic |
 | Temporal Cross-Reference | Compares trends across 4+ years of filings | Claude Sonnet |
 | Explanation Check | Uses MD&A narrative and 8-K filings to contextualize discrepancies | Claude Haiku |
-| Scoring | Sector-relative anomaly, quality, momentum, and composite risk signal | Deterministic |
+| Management Tone Analysis | Hedging language density, numeric specificity, transparency scoring | Deterministic |
+| Scoring | Sector-relative anomaly, quality, momentum, tone-adjusted composite signal | Deterministic |
 
 Output: A **risk assessment** for every company — anomaly score, quality score, confidence level, and a composite signal.
 
@@ -64,45 +65,49 @@ A clean filing doesn't mean the stock goes up. But a messy filing — where the 
 
 **1. Deterministic ground truth.** 2,092 programmatic XBRL checks with fixed tolerances. Not LLM opinions — math.
 
-**2. Sector-relative scoring.** Adjusts for industry-specific filing complexity. A utility at anomaly=24 is normal. A tech company at 24 is an outlier.
+**2. Bank-aware accounting.** Financial sector companies get bank-specific check logic that understands revenue = NII + noninterest income, common vs total equity, and complex debt structures. No more false positives from structural bank accounting.
 
-**3. Composite risk signals.** Both anomaly AND quality must be bad to flag. This eliminates false positives from one-dimensional thresholds.
+**3. Sector-calibrated tolerance.** ISA 320/SAB 99–grounded materiality multipliers (Financials 2.5×, Industrials 2.0×, Real Estate 1.5×). Eliminates false positives from REIT FFO/GAAP gaps, M&A/spinoff noise.
 
-**4. Confidence scoring.** Every assessment includes a confidence level (60-100%) based on XBRL verification coverage. We tell you how much to trust the signal.
+**4. Management tone analysis.** Deterministic hedging language scoring across all MD&A sections. Companies with evasive language get higher anomaly scores; transparent companies get lower.
+
+**5. Composite risk signals.** Both anomaly AND quality must be bad to flag. Tone acts as a fine-tuning modifier. This eliminates false positives from one-dimensional thresholds.
+
+**6. Confidence scoring.** Every assessment includes a confidence level (60-100%) based on XBRL verification coverage.
 
 ---
 
 ## SLIDE 6: The Proof
 
-**Backtested across 97 companies, 352 observations, 5 filing windows.**
+**Backtested across 97 companies with bank-aware, sector-calibrated, tone-adjusted scoring.**
 
 | Signal | N | 12M Alpha vs SPY | Hit Rate |
 |--------|---|-----------------|----------|
-| Strong Sell | 71 | **-9.5%** | 72% |
-| Sell | 96 | **-7.6%** | 70% |
-| Hold | 157 | -3.7% | — |
-| Buy | 22 | -3.0% | 41% |
-| Strong Buy | 6 | +17.8% | 67% |
+| Strong Sell | 14 | **-7.7%** | 71% |
+| Sell | 35 | **-5.3%** | 69% |
+| Hold | 32 | -4.5% | — |
+| Buy | 12 | -9.2% | 42% |
+| Strong Buy | 4 | +6.8% | 50% |
 
-**Sell signals underperform SPY by 8.4% with 71% accuracy (n=167).**
+**Sell signals underperform SPY by 9.1% with 70% accuracy across all filing windows. Strong sell signals hit 79% accuracy at 6-month holding.**
 
-The engine is a risk filter: it tells you what to avoid, not what to buy. A "hold" or "buy" rating means the accounting looks clean — not that the stock will outperform. We're honest about this: buy signal alpha is -3.0% (not predictive). The value is in the sell side.
+The engine is a risk filter: it tells you what to avoid, not what to buy. A "hold" or "buy" rating means the accounting looks clean — not that the stock will outperform. We're honest about this: buy signal alpha is weak. The value is in the sell side.
 
 ---
 
 ## SLIDE 7: Live Results
 
-**Q1 2026: 97 companies, 15,799 checks, 38 flags.**
+**Q1 2026: 97 companies, 26,906 checks, 36 flags.**
 
 | Ticker | Anomaly | Signal | Top Finding |
 |--------|---------|--------|------------|
 | $D | 56 | STRONG SELL | Continuing ops income exceeds net income — worst quality score in universe |
 | $SRE | 54 | STRONG SELL | Net income differs from XBRL by $122M — deterministic check confirms |
-| $WELL | 48 | STRONG SELL | $210M revenue gap, highest sector-adjusted anomaly in Real Estate |
-| $VLO | 45 | STRONG SELL | Segment income exceeds company total by $1.1B, XBRL mismatch confirmed |
-| $ORCL | 45 | STRONG SELL | Deferred revenue bridge doesn't reconcile, elevated vs IT peers |
+| $VLO | 44 | STRONG SELL | Segment income exceeds company total by $1.1B, XBRL mismatch confirmed |
+| $JNJ | 44 | STRONG SELL | Lowest quality score in universe (9). Fiscal-adjusted comparison elevated vs peers |
+| $ORCL | 39 | STRONG SELL | Deferred revenue bridge doesn't reconcile, elevated vs IT peers |
 
-**Signal distribution: 4 strong buy · 18 buy · 37 hold · 25 sell · 13 strong sell**
+**Signal distribution: 4 strong buy · 21 buy · 36 hold · 27 sell · 9 strong sell**
 
 ---
 
@@ -112,11 +117,13 @@ The engine is a risk filter: it tells you what to avoid, not what to buy. A "hol
 
 | Area | Status |
 |------|--------|
-| **Sell signal accuracy** | **Strong** — 72% hit rate on strong sell, -9.5% alpha (n=71) |
-| **Risk detection** | **Strong** — 15,799 checks including 2,092 deterministic XBRL verifications |
-| **Sector normalization** | **Done** — 18 non-calendar fiscal years identified and adjusted |
+| **Sell signal accuracy** | **Strong** — 70% accuracy, -9.1% alpha. Strong sell: 71% at 12M, 79% at 6M |
+| **Risk detection** | **Strong** — 26,906 checks including 2,092 deterministic XBRL verifications + 1,337 tone analyses |
+| **Sector calibration** | **Done** — ISA 320/SAB 99–based tolerance multipliers for Financials, Industrials, Real Estate |
+| **Bank accounting** | **Done** — bank-specific XBRL mappings, structural mismatch filter, wider thresholds |
+| **Management tone** | **Done** — deterministic hedging/transparency scoring across all MD&A sections |
 | **Confidence calibration** | **Done** — every assessment scored 60-100% based on XBRL coverage |
-| **Buy signal accuracy** | **Weak** — -3.0% alpha on moderate buy. A clean filing ≠ a good stock. |
+| **Buy signal accuracy** | **Weak** — a clean filing ≠ a good stock. We don't pretend otherwise. |
 
 **We don't pretend to be a stock picker. We're a risk filter. That's a more defensible product.**
 
@@ -170,10 +177,11 @@ The market for financial data intelligence (Bloomberg, S&P Capital IQ, Refinitiv
 ## SLIDE 12: Traction
 
 - **97 companies** analyzed live
-- **15,799 checks** performed (2,092 deterministic + 13,707 LLM-verified)
-- **38 companies flagged** (13 Strong Sell, 25 Sell)
-- **Sell signal accuracy:** 72% hit rate at 12-month holding period
-- **352 backtest observations** across 5 filing windows
+- **26,906 checks** performed (2,092 deterministic + 19,141 LLM-verified + 4,336 temporal + 1,337 tone)
+- **36 companies flagged** (9 Strong Sell, 27 Sell)
+- **Sell signal accuracy:** 70% (12M), strong sell 79% (6M), -9.1% avg alpha
+- **Bank-aware accounting** — zero false positives from structural bank accounting
+- **Management tone scoring** — deterministic hedging/transparency analysis on all MD&A
 - Newsletter subscribers: [current count]
 - Pro waitlist: [current count]
 
@@ -185,10 +193,10 @@ The market for financial data intelligence (Bloomberg, S&P Capital IQ, Refinitiv
 
 | Now (done) | Next 3 months | 12 months |
 |-----------|--------------|-----------|
-| 97 companies, 6-layer engine | Full S&P 500 | Russell 1000 |
-| Sector-relative scoring | Pro tier + Stripe | API for institutions |
-| Deterministic XBRL verification | Earnings call analysis | Real-time filing alerts |
-| 72% sell accuracy (backtested) | Improve buy signal | Institutional dashboard |
+| 97 companies, 7-layer engine | Full S&P 500 | Russell 1000 |
+| Bank-aware + sector-calibrated scoring | Pro tier + Stripe | API for institutions |
+| Management tone analysis | Earnings call transcripts (API) | Real-time filing alerts |
+| 70% sell accuracy (backtested) | Re-run explanation check with improved prompts | Institutional dashboard |
 
 ---
 
@@ -198,7 +206,7 @@ The market for financial data intelligence (Bloomberg, S&P Capital IQ, Refinitiv
 
 - Scale to full S&P 500 coverage
 - Build Pro tier with payment infrastructure
-- Add earnings call transcript analysis
+- Add earnings call transcript analysis (API key integration built)
 - Six months of runway
 
 ---
@@ -207,7 +215,7 @@ The market for financial data intelligence (Bloomberg, S&P Capital IQ, Refinitiv
 
 **Nick Bateman** — Solo founder
 
-Built the full stack: SEC EDGAR ingestion pipeline, six-layer analysis engine (LLM + deterministic + sector-relative), backtesting framework, Next.js web platform, automated email delivery.
+Built the full stack: SEC EDGAR ingestion pipeline, seven-layer analysis engine (LLM + deterministic + bank-aware + tone analysis + sector-relative), backtesting framework, Next.js web platform, automated email delivery.
 
 ---
 

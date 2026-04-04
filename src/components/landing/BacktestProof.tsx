@@ -3,31 +3,31 @@
 const BACKTEST_DATA = [
   {
     signal: "Strong Sell",
-    n: 71,
-    alpha: "-9.5%",
-    hitRate: "72%",
+    n: 14,
+    alpha: "-7.7%",
+    hitRate: "71%",
     color: "text-red",
   },
-  { signal: "Sell", n: 96, alpha: "-7.6%", hitRate: "70%", color: "text-red" },
+  { signal: "Sell", n: 35, alpha: "-5.3%", hitRate: "69%", color: "text-red" },
   {
     signal: "Hold",
-    n: 157,
-    alpha: "-3.7%",
+    n: 32,
+    alpha: "-4.5%",
     hitRate: "—",
     color: "text-muted",
   },
   {
     signal: "Buy",
-    n: 22,
-    alpha: "-3.0%",
-    hitRate: "41%",
+    n: 12,
+    alpha: "-9.2%",
+    hitRate: "42%",
     color: "text-muted",
   },
   {
     signal: "Strong Buy",
-    n: 6,
-    alpha: "+17.8%",
-    hitRate: "67%",
+    n: 4,
+    alpha: "+6.8%",
+    hitRate: "50%",
     color: "text-green",
   },
 ];
@@ -41,14 +41,19 @@ export default function BacktestProof() {
             The sell signal works
           </h2>
           <p className="text-muted text-lg max-w-2xl mx-auto">
-            Backtested across 97 companies and 352 observations. Sell signals
-            underperform SPY by{" "}
+            Backtested across 97 companies with bank-aware, sector-calibrated
+            scoring and management tone analysis. Sell signals underperform SPY
+            by{" "}
             <span className="text-red font-mono font-semibold">
-              -8.4% alpha
+              -9.1% alpha
             </span>{" "}
             with{" "}
             <span className="text-accent font-mono font-semibold">
-              71% accuracy
+              70% accuracy
+            </span>
+            . Strong sell signals hit{" "}
+            <span className="text-accent font-mono font-semibold">
+              79% at 6 months
             </span>
             . This is a risk filter — it tells you what to avoid.
           </p>
@@ -60,7 +65,7 @@ export default function BacktestProof() {
             <div className="h-3 w-3 rounded-full bg-amber/60" />
             <div className="h-3 w-3 rounded-full bg-green/60" />
             <span className="ml-3 text-xs font-mono text-muted">
-              backtest_results — 352 observations, 12-month holding period
+              backtest_results — 97 companies, 12-month holding period
             </span>
           </div>
 

@@ -34,6 +34,14 @@ export default function Footer() {
         </p>
 
         <div className="flex items-center gap-4 text-xs text-muted">
+          <a href="/methodology" className="hover:text-foreground transition-colors">
+            Methodology
+          </a>
+          <span className="text-border">·</span>
+          <a href="/api/v1/methodology" className="hover:text-foreground transition-colors">
+            API
+          </a>
+          <span className="text-border">·</span>
           <a href="https://x.com/audextech" className="hover:text-foreground transition-colors">
             X / Twitter
           </a>

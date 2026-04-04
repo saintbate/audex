@@ -21,33 +21,22 @@ const FLAGS: FlagData[] = [
     filingDate: "Feb 23, 2026",
     filingType: "10-K",
     topFinding:
-      "Continuing operations income ($3,012M) exceeds total net income ($2,998M) — logically inconsistent. Worst quality score in universe (11). Confidence: 90%.",
+      "Continuing operations income ($3,012M) exceeds total net income ($2,998M) — logically inconsistent. Management tone score 70 — moderate transparency. Confidence: 90%.",
   },
   {
     ticker: "SRE",
-    anomaly: 54,
+    anomaly: 55,
     quality: 13,
     signal: "STRONG SELL",
     sector: "Utilities",
     filingDate: "Feb 26, 2026",
     filingType: "10-K",
     topFinding:
-      "Net income differs from XBRL by $122M (16.7%). Deterministic check confirms. Unexplained in MD&A despite acquisition activity. Confidence: 90%.",
-  },
-  {
-    ticker: "WELL",
-    anomaly: 48,
-    quality: 16,
-    signal: "STRONG SELL",
-    sector: "Real Estate",
-    filingDate: "Feb 19, 2026",
-    filingType: "10-K",
-    topFinding:
-      "Multiple revenue recognition inconsistencies. XBRL verification flagged $210M gap. Highest sector-adjusted anomaly in Real Estate. Confidence: 80%.",
+      "Net income differs from XBRL by $122M (16.7%). Deterministic check confirms. Management tone score 60 — above-average hedging language in MD&A. Confidence: 90%.",
   },
   {
     ticker: "VLO",
-    anomaly: 45,
+    anomaly: 44,
     quality: 21,
     signal: "STRONG SELL",
     sector: "Energy",
@@ -57,30 +46,8 @@ const FLAGS: FlagData[] = [
       "Segment operating income ($4,258M) exceeds company total ($3,181M) by $1.1B. Programmatic XBRL check confirms mismatch. Confidence: 80%.",
   },
   {
-    ticker: "ORCL",
-    anomaly: 45,
-    quality: 31,
-    signal: "STRONG SELL",
-    sector: "Information Technology",
-    filingDate: "Mar 11, 2026",
-    filingType: "10-Q",
-    topFinding:
-      "Cloud revenue recognition timing inconsistencies. Deferred revenue bridge doesn't reconcile. FY ends May — sector-relative anomaly elevated vs IT peers.",
-  },
-  {
-    ticker: "AMT",
-    anomaly: 43,
-    quality: 28,
-    signal: "STRONG SELL",
-    sector: "Real Estate",
-    filingDate: "Feb 24, 2026",
-    filingType: "10-K",
-    topFinding:
-      "Revenue discrepancy partially explained by REIT structure, but $185M XBRL mismatch confirmed by deterministic check. Confidence: 80%.",
-  },
-  {
     ticker: "JNJ",
-    anomaly: 43,
+    anomaly: 44,
     quality: 9,
     signal: "STRONG SELL",
     sector: "Health Care",
@@ -101,15 +68,48 @@ const FLAGS: FlagData[] = [
       "Multiple conflicting EPS values across sections. Momentum score 7.1 signals deteriorating trend. Deterministic checks confirm revenue gap.",
   },
   {
-    ticker: "C",
+    ticker: "WELL",
     anomaly: 40,
-    quality: 40,
-    signal: "STRONG SELL",
-    sector: "Financials",
-    filingDate: "Feb 21, 2026",
+    quality: 16,
+    signal: "SELL",
+    sector: "Real Estate",
+    filingDate: "Feb 19, 2026",
     filingType: "10-K",
     topFinding:
-      "Net interest income components don't reconcile. Momentum score 8.3 signals deterioration. XBRL coverage high (confidence: 100%) — discrepancies are verified.",
+      "Multiple revenue recognition inconsistencies. Management tone score 14 — highest hedging language density in universe. Sector tolerance applied (1.5x REIT). Confidence: 80%.",
+  },
+  {
+    ticker: "ORCL",
+    anomaly: 39,
+    quality: 31,
+    signal: "STRONG SELL",
+    sector: "Information Technology",
+    filingDate: "Mar 11, 2026",
+    filingType: "10-Q",
+    topFinding:
+      "Cloud revenue recognition timing inconsistencies. Deferred revenue bridge doesn't reconcile. FY ends May — sector-relative anomaly elevated vs IT peers.",
+  },
+  {
+    ticker: "PSX",
+    anomaly: 39,
+    quality: 37,
+    signal: "STRONG SELL",
+    sector: "Energy",
+    filingDate: "Feb 20, 2026",
+    filingType: "10-K",
+    topFinding:
+      "Segment refining margins don't reconcile with consolidated EBITDA. XBRL verification flagged multiple discrepancies. Sector-adjusted anomaly elevated vs Energy peers.",
+  },
+  {
+    ticker: "COP",
+    anomaly: 37,
+    quality: 24,
+    signal: "SELL",
+    sector: "Energy",
+    filingDate: "Feb 24, 2026",
+    filingType: "10-K",
+    topFinding:
+      "Production volumes claimed in narrative diverge from XBRL-reported figures. Segment income doesn't reconcile with consolidated totals. Confidence: 90%.",
   },
 ];
 
@@ -212,7 +212,7 @@ export default function RecentFlags() {
 
         <div className="text-center mt-8">
           <p className="text-sm text-muted mb-4">
-            97 companies analyzed · 38 flagged · 15,799 checks performed · confidence 60-100%
+            97 companies analyzed · 36 flagged · 26,906 checks performed · bank-aware sector-calibrated scoring
           </p>
           <a
             href="/leaderboard"

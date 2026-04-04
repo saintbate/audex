@@ -30,10 +30,12 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg sm:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
-          Our six-layer verification engine cross-references every claim in a
+          Our seven-layer verification engine cross-references every claim in a
           company&apos;s 10-K and 10-Q filings against XBRL data, historical
-          filings, and management commentary. When the numbers don&apos;t add
-          up, we flag it — before the market does.
+          filings, and management tone analysis — with sector-calibrated tolerance
+          for Financials, REITs, and Industrials and bank-aware accounting
+          checks. When the numbers don&apos;t add up, we flag it — before the
+          market does.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
@@ -62,21 +64,21 @@ export default function Hero() {
           <div className="h-8 w-px bg-border hidden sm:block" />
           <div>
             <div className="text-2xl sm:text-3xl font-mono font-bold text-red">
-              38
+              36
             </div>
             <div className="text-xs text-muted mt-1">Red Flags Issued</div>
           </div>
           <div className="h-8 w-px bg-border hidden sm:block" />
           <div>
             <div className="text-2xl sm:text-3xl font-mono font-bold text-foreground">
-              15,799
+              26,906
             </div>
             <div className="text-xs text-muted mt-1">Checks Performed</div>
           </div>
           <div className="h-8 w-px bg-border hidden sm:block" />
           <div>
             <div className="text-2xl sm:text-3xl font-mono font-bold text-green">
-              72%
+              70%
             </div>
             <div className="text-xs text-muted mt-1">Sell Hit Rate</div>
           </div>

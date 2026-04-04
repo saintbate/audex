@@ -39,6 +39,9 @@ export default function Header() {
           <a href="/track-record" className="hover:text-foreground transition-colors">
             Track Record
           </a>
+          <a href="/methodology" className="hover:text-foreground transition-colors">
+            Methodology
+          </a>
           <a href="#flags" className="hover:text-foreground transition-colors">
             Red Flags
           </a>
