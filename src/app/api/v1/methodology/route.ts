@@ -22,9 +22,9 @@ export async function GET() {
     engine: {
       name: "Audex Seven-Layer Filing Analysis Engine",
       description:
-        "Multi-pass SEC filing analysis that extracts financial claims, " +
-        "cross-references them using LLM and deterministic methods, and " +
-        "produces composite risk signals.",
+        "Document intelligence engine that extracts, verifies, and scores " +
+        "structured claims in SEC filings using a hybrid LLM and deterministic " +
+        "pipeline. Classifies document reliability.",
       coverage: "97 S&P 500 companies across all 11 GICS sectors",
       filingTypes: ["10-K", "10-Q"],
     },
@@ -118,11 +118,11 @@ export async function GET() {
         "Composite risk signal based on risk = anomaly * (1 - quality/100), " +
         "with momentum shifting signal ±1 level.",
       signals: [
-        { signal: "strong_sell", criteria: "risk >= 35 AND anomaly >= 40" },
-        { signal: "sell", criteria: "risk >= 20 OR (anomaly >= 30 AND quality < 30)" },
-        { signal: "hold", criteria: "Default — does not meet buy or sell criteria" },
-        { signal: "buy", criteria: "risk <= 8 AND quality >= 55 AND anomaly < 22" },
-        { signal: "strong_buy", criteria: "risk <= 3 AND quality >= 70 AND anomaly < 12" },
+        { signal: "critical_risk", criteria: "risk >= 35 AND anomaly >= 40" },
+        { signal: "elevated_risk", criteria: "risk >= 20 OR (anomaly >= 30 AND quality < 30)" },
+        { signal: "baseline", criteria: "Default — does not meet low-risk or elevated-risk criteria" },
+        { signal: "low_risk", criteria: "risk <= 8 AND quality >= 55 AND anomaly < 22" },
+        { signal: "high_reliability", criteria: "risk <= 3 AND quality >= 70 AND anomaly < 12" },
       ],
     },
     sectorCalibration: {
@@ -158,10 +158,10 @@ export async function GET() {
       companiesAnalyzed: 97,
     },
     disclaimer:
-      "Audex provides automated filing analysis for informational purposes only. " +
-      "This is a risk filter, not a stock picker. A clean filing does not mean the " +
-      "stock will outperform. Past backtest performance does not guarantee future results. " +
-      "Not financial advice.",
+      "Audex provides automated document intelligence for informational and " +
+      "research purposes only. Reliability scores reflect filing consistency, not " +
+      "investment recommendations. Past backtest performance does not guarantee " +
+      "future results.",
   };
 
   return NextResponse.json(methodology, { headers: CORS_HEADERS });

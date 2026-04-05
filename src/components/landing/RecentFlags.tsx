@@ -16,7 +16,7 @@ const FLAGS: FlagData[] = [
     ticker: "D",
     anomaly: 56,
     quality: 11,
-    signal: "STRONG SELL",
+    signal: "CRITICAL RISK",
     sector: "Utilities",
     filingDate: "Feb 23, 2026",
     filingType: "10-K",
@@ -27,7 +27,7 @@ const FLAGS: FlagData[] = [
     ticker: "SRE",
     anomaly: 55,
     quality: 13,
-    signal: "STRONG SELL",
+    signal: "CRITICAL RISK",
     sector: "Utilities",
     filingDate: "Feb 26, 2026",
     filingType: "10-K",
@@ -38,7 +38,7 @@ const FLAGS: FlagData[] = [
     ticker: "VLO",
     anomaly: 44,
     quality: 21,
-    signal: "STRONG SELL",
+    signal: "CRITICAL RISK",
     sector: "Energy",
     filingDate: "Feb 25, 2026",
     filingType: "10-K",
@@ -49,7 +49,7 @@ const FLAGS: FlagData[] = [
     ticker: "JNJ",
     anomaly: 44,
     quality: 9,
-    signal: "STRONG SELL",
+    signal: "CRITICAL RISK",
     sector: "Health Care",
     filingDate: "Feb 12, 2026",
     filingType: "10-K",
@@ -60,7 +60,7 @@ const FLAGS: FlagData[] = [
     ticker: "DUK",
     anomaly: 42,
     quality: 27,
-    signal: "STRONG SELL",
+    signal: "CRITICAL RISK",
     sector: "Utilities",
     filingDate: "Feb 26, 2026",
     filingType: "10-K",
@@ -71,7 +71,7 @@ const FLAGS: FlagData[] = [
     ticker: "WELL",
     anomaly: 40,
     quality: 16,
-    signal: "SELL",
+    signal: "ELEVATED RISK",
     sector: "Real Estate",
     filingDate: "Feb 19, 2026",
     filingType: "10-K",
@@ -82,7 +82,7 @@ const FLAGS: FlagData[] = [
     ticker: "ORCL",
     anomaly: 39,
     quality: 31,
-    signal: "STRONG SELL",
+    signal: "CRITICAL RISK",
     sector: "Information Technology",
     filingDate: "Mar 11, 2026",
     filingType: "10-Q",
@@ -93,7 +93,7 @@ const FLAGS: FlagData[] = [
     ticker: "PSX",
     anomaly: 39,
     quality: 37,
-    signal: "STRONG SELL",
+    signal: "CRITICAL RISK",
     sector: "Energy",
     filingDate: "Feb 20, 2026",
     filingType: "10-K",
@@ -104,7 +104,7 @@ const FLAGS: FlagData[] = [
     ticker: "COP",
     anomaly: 37,
     quality: 24,
-    signal: "SELL",
+    signal: "ELEVATED RISK",
     sector: "Energy",
     filingDate: "Feb 24, 2026",
     filingType: "10-K",
@@ -132,11 +132,11 @@ function ScoreBar({ score, max = 100 }: { score: number; max?: number }) {
 }
 
 function SignalBadge({ signal }: { signal: string }) {
-  const isStrong = signal.includes("STRONG");
-  const isSell = signal.includes("SELL");
+  const isCritical = signal.includes("CRITICAL");
+  const isRisk = signal.includes("RISK");
 
-  const bg = isSell
-    ? isStrong
+  const bg = isRisk
+    ? isCritical
       ? "bg-red/15 text-red border-red/30"
       : "bg-red/10 text-red-dim border-red/20"
     : "bg-green/10 text-green border-green/20";
@@ -187,12 +187,12 @@ function FlagCard({ flag }: { flag: FlagData }) {
 
 export default function RecentFlags() {
   return (
-    <section id="flags" className="py-20 px-6 bg-surface-2/50">
+    <section id="analysis" className="py-20 px-6 bg-surface-2/50">
       <div className="mx-auto max-w-5xl">
         <div className="flex items-center justify-between mb-10">
           <div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-2">
-              Latest Red Flags
+              Recent Filing Analysis
             </h2>
             <p className="text-muted">
               From Q1 2026 SEC filings. Updated as companies file.
@@ -212,7 +212,7 @@ export default function RecentFlags() {
 
         <div className="text-center mt-8">
           <p className="text-sm text-muted mb-4">
-            97 companies analyzed · 36 flagged · 26,906 checks performed · bank-aware sector-calibrated scoring
+            97 companies analyzed · 38 flagged · 26,906 verification checks · bank-aware sector-calibrated scoring
           </p>
           <a
             href="/leaderboard"

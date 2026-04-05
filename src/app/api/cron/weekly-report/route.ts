@@ -29,10 +29,10 @@ function getWeekOf(): string {
 }
 
 function signalColor(signal: string): string {
-  if (signal.includes("strong_sell")) return "#ff4444";
-  if (signal.includes("sell")) return "#ff6b6b";
-  if (signal.includes("strong_buy")) return "#22c55e";
-  if (signal.includes("buy")) return "#4ade80";
+  if (signal.includes("critical_risk")) return "#ff4444";
+  if (signal.includes("elevated_risk")) return "#ff6b6b";
+  if (signal.includes("high_reliability")) return "#22c55e";
+  if (signal.includes("low_risk")) return "#4ade80";
   return "#71717a";
 }
 
@@ -92,7 +92,7 @@ function buildEmail(flags: Flag[], weekOf: string): string {
         <span style="font-size: 24px; font-weight: bold; color: #f5a623;">⊕ AUDEX</span>
       </div>
       <div style="font-size: 13px; color: #71717a;">
-        Weekly Filing Intelligence · Week of ${weekOf}
+        Weekly Document Intelligence · Week of ${weekOf}
       </div>
     </div>
 
@@ -160,7 +160,7 @@ export async function GET(req: NextRequest) {
              overall_signal, filing_type, filing_date, key_findings,
              checks_total, checks_failed
       FROM published_reports
-      WHERE overall_signal IN ('strong_sell', 'sell')
+      WHERE overall_signal IN ('critical_risk', 'elevated_risk')
       ORDER BY anomaly_score DESC
       LIMIT 5
     `) as Flag[];

@@ -28,9 +28,9 @@ export default function Footer() {
         </div>
 
         <p className="text-xs text-muted text-center max-w-lg">
-          Audex provides automated analysis of public SEC filings for
-          informational purposes only. Not financial advice. Past performance
-          does not guarantee future results. Always do your own research.
+          Audex provides automated document intelligence for public SEC filings.
+          Analysis is for informational and research purposes only.
+          A product of Vertical AI LLC.
         </p>
 
         <div className="flex items-center gap-4 text-xs text-muted">

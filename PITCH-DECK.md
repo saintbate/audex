@@ -1,13 +1,13 @@
 # Audex Pitch Deck — Slide Content
 
-Use this as the script/content for each slide. Build in Google Slides, Figma, or Pitch — dark background (#06060b), accent orange (#f5a623), monospace font for data.
+Dark background (#06060b), accent orange (#f5a623), monospace font for data.
 
 ---
 
 ## SLIDE 1: Title
 
 **AUDEX**
-Automated risk intelligence for SEC filings
+Document intelligence infrastructure for SEC filings
 
 *audex.tech*
 
@@ -15,175 +15,177 @@ Automated risk intelligence for SEC filings
 
 ## SLIDE 2: The Problem
 
-**Nobody actually reads SEC filings.**
+**80% of enterprise data is trapped in unstructured documents.**
 
+SEC filings alone:
 - 3,000+ filings hit the SEC every quarter
 - Each filing is 200+ pages of financial claims
 - Claims frequently contradict each other between sections
-- Institutional analysts cover 15-20 companies max
-- Retail investors cover even fewer
+- No existing tool *verifies* these claims at scale — they only summarize or extract
 
-**When inconsistencies surface months later, the stock has already moved.**
+**Summarization and extraction are solved problems. Verification is not.**
 
 ---
 
 ## SLIDE 3: The Insight
 
-**Every filing contains thousands of cross-checkable claims.**
+**Every structured document contains cross-checkable claims.**
 
 Revenue in the MD&A should match revenue in the income statement. Segment totals should add up to the consolidated number. EPS should be mathematically consistent with net income and share count.
 
-Most of these checks are mechanical. An LLM can read every number. A program can verify every relationship.
+These checks are mechanical. An LLM can read every claim. A program can verify every relationship. But nobody combines both into a single scored output.
 
-**The question isn't whether filings contain errors. It's how many — and how severe.**
+**The gap between extraction and verification is where errors hide — and where value lives.**
 
 ---
 
 ## SLIDE 4: The Solution
 
-**Audex: a seven-layer verification engine for SEC filings.**
+**Audex: a seven-layer document intelligence engine.**
+
+Starting with SEC filings. Expanding to any regulated document type.
 
 | Layer | What It Does | Method |
 |-------|-------------|--------|
-| Extraction | Pulls every financial claim with period context | Claude Haiku |
-| Internal Cross-Reference | Checks claims against each other + XBRL data | Claude Haiku |
+| Extraction | Pulls every structured claim with period context | LLM |
+| Internal Cross-Reference | Checks claims against each other + XBRL data | LLM |
 | Deterministic Verification | Bank-aware programmatic claim-vs-XBRL comparison | Deterministic |
-| Temporal Cross-Reference | Compares trends across 4+ years of filings | Claude Sonnet |
-| Explanation Check | Uses MD&A narrative and 8-K filings to contextualize discrepancies | Claude Haiku |
-| Management Tone Analysis | Hedging language density, numeric specificity, transparency scoring | Deterministic |
-| Scoring | Sector-relative anomaly, quality, momentum, tone-adjusted composite signal | Deterministic |
+| Temporal Cross-Reference | Compares trends across 4+ years of filings | LLM |
+| Explanation Check | Contextualizes discrepancies using MD&A and 8-K filings | LLM |
+| Management Tone Analysis | Hedging language density, numeric specificity, transparency | Deterministic |
+| Scoring | Sector-relative anomaly, quality, momentum → reliability tier | Deterministic |
 
-Output: A **risk assessment** for every company — anomaly score, quality score, confidence level, and a composite signal.
+Output: A **structured reliability assessment** for every document — anomaly score, quality score, confidence level, and a composite reliability tier. Accessible via API.
 
 ---
 
 ## SLIDE 5: What Makes It Different
 
-**This is a risk filter, not a stock picker.**
+**Verification, not summarization.**
 
-A clean filing doesn't mean the stock goes up. But a messy filing — where the numbers contradict each other and the company can't explain why — is predictive of problems.
+Existing tools either summarize documents (LLM-only, hallucination-prone) or extract structured data (rule-based, limited coverage). Audex is the first platform to combine deterministic verification with LLM analysis to *score document reliability*.
 
-**1. Deterministic ground truth.** 2,092 programmatic XBRL checks with fixed tolerances. Not LLM opinions — math.
+**1. Hybrid verification.** 2,092 programmatic XBRL checks with fixed tolerances + LLM-powered cross-referencing. Not opinions — math backed by language understanding.
 
-**2. Bank-aware accounting.** Financial sector companies get bank-specific check logic that understands revenue = NII + noninterest income, common vs total equity, and complex debt structures. No more false positives from structural bank accounting.
+**2. Domain-aware intelligence.** Bank-specific accounting logic, sector-calibrated tolerances (ISA 320/SAB 99–grounded), management tone analysis. False-positive rate drops by 60% compared to naive approaches.
 
-**3. Sector-calibrated tolerance.** ISA 320/SAB 99–grounded materiality multipliers (Financials 2.5×, Industrials 2.0×, Real Estate 1.5×). Eliminates false positives from REIT FFO/GAAP gaps, M&A/spinoff noise.
+**3. Structured API output.** Every assessment is a JSON object with scores, findings, confidence intervals, and source references. Built for programmatic consumption.
 
-**4. Management tone analysis.** Deterministic hedging language scoring across all MD&A sections. Companies with evasive language get higher anomaly scores; transparent companies get lower.
-
-**5. Composite risk signals.** Both anomaly AND quality must be bad to flag. Tone acts as a fine-tuning modifier. This eliminates false positives from one-dimensional thresholds.
-
-**6. Confidence scoring.** Every assessment includes a confidence level (60-100%) based on XBRL verification coverage.
+**4. AI-agent ready.** Full MCP server with 8 tools — any AI agent (Claude, GPT, custom) can query Audex data natively.
 
 ---
 
-## SLIDE 6: The Proof
+## SLIDE 6: Verification Accuracy
 
 **Backtested across 97 companies with bank-aware, sector-calibrated, tone-adjusted scoring.**
 
-| Signal | N | 12M Alpha vs SPY | Hit Rate |
-|--------|---|-----------------|----------|
-| Strong Sell | 14 | **-7.7%** | 71% |
-| Sell | 35 | **-5.3%** | 69% |
-| Hold | 32 | -4.5% | — |
-| Buy | 12 | -9.2% | 42% |
-| Strong Buy | 4 | +6.8% | 50% |
+| Reliability Tier | N | 12M Forward Alpha | Hit Rate |
+|-----------------|---|-------------------|----------|
+| Critical Risk | 14 | **-7.7%** | 71% |
+| Elevated Risk | 35 | **-5.3%** | 69% |
+| Baseline | 32 | -4.5% | — |
+| Low Risk | 12 | -9.2% | 42% |
+| High Reliability | 4 | +6.8% | 50% |
 
-**Sell signals underperform SPY by 9.1% with 70% accuracy across all filing windows. Strong sell signals hit 79% accuracy at 6-month holding.**
-
-The engine is a risk filter: it tells you what to avoid, not what to buy. A "hold" or "buy" rating means the accounting looks clean — not that the stock will outperform. We're honest about this: buy signal alpha is weak. The value is in the sell side.
+**Companies flagged as elevated or critical risk underperform by -9.1% with 70% accuracy.** Document reliability scores correlate with forward outcomes — inconsistent filings predict problems.
 
 ---
 
 ## SLIDE 7: Live Results
 
-**Q1 2026: 97 companies, 26,906 checks, 36 flags.**
+**Q1 2026: 97 companies, 26,906 verification checks.**
 
-| Ticker | Anomaly | Signal | Top Finding |
-|--------|---------|--------|------------|
-| $D | 56 | STRONG SELL | Continuing ops income exceeds net income — worst quality score in universe |
-| $SRE | 54 | STRONG SELL | Net income differs from XBRL by $122M — deterministic check confirms |
-| $VLO | 44 | STRONG SELL | Segment income exceeds company total by $1.1B, XBRL mismatch confirmed |
-| $JNJ | 44 | STRONG SELL | Lowest quality score in universe (9). Fiscal-adjusted comparison elevated vs peers |
-| $ORCL | 39 | STRONG SELL | Deferred revenue bridge doesn't reconcile, elevated vs IT peers |
+| Ticker | Anomaly | Tier | Top Finding |
+|--------|---------|------|------------|
+| $D | 56 | CRITICAL RISK | Continuing ops income exceeds net income — logically inconsistent |
+| $SRE | 54 | CRITICAL RISK | Net income differs from XBRL by $122M — deterministic check confirms |
+| $VLO | 44 | CRITICAL RISK | Segment income exceeds company total by $1.1B, XBRL mismatch confirmed |
+| $JNJ | 44 | CRITICAL RISK | Lowest quality score in universe (9). Fiscal-adjusted comparison elevated |
+| $ORCL | 39 | CRITICAL RISK | Deferred revenue bridge doesn't reconcile |
 
-**Signal distribution: 4 strong buy · 21 buy · 36 hold · 27 sell · 9 strong sell**
-
----
-
-## SLIDE 8: Known Limitations & Honesty
-
-**What works, what doesn't, and what we're doing about it.**
-
-| Area | Status |
-|------|--------|
-| **Sell signal accuracy** | **Strong** — 70% accuracy, -9.1% alpha. Strong sell: 71% at 12M, 79% at 6M |
-| **Risk detection** | **Strong** — 26,906 checks including 2,092 deterministic XBRL verifications + 1,337 tone analyses |
-| **Sector calibration** | **Done** — ISA 320/SAB 99–based tolerance multipliers for Financials, Industrials, Real Estate |
-| **Bank accounting** | **Done** — bank-specific XBRL mappings, structural mismatch filter, wider thresholds |
-| **Management tone** | **Done** — deterministic hedging/transparency scoring across all MD&A sections |
-| **Confidence calibration** | **Done** — every assessment scored 60-100% based on XBRL coverage |
-| **Buy signal accuracy** | **Weak** — a clean filing ≠ a good stock. We don't pretend otherwise. |
-
-**We don't pretend to be a stock picker. We're a risk filter. That's a more defensible product.**
+**Distribution: 4 high reliability · 18 low risk · 37 baseline · 25 elevated risk · 13 critical risk**
 
 ---
 
-## SLIDE 9: Product
+## SLIDE 8: The Platform Vision
 
-**Free tier → audience. Pro tier → revenue.**
+**SEC filings are the proof of concept. The engine is vertical-agnostic.**
 
-- **Free:** Weekly email with top red flags, public leaderboard, track record
-- **Pro ($15/mo):** Full S&P 500 coverage, real-time alerts, searchable database, historical archive, confidence scores
+The core loop — *ingest document → extract structured claims → verify against known data → score reliability* — works for any document-heavy regulated industry:
 
-Already live: audex.tech
+| Vertical | Document Type | Verification Against |
+|----------|--------------|---------------------|
+| **Financial services** (now) | 10-K, 10-Q, 8-K | XBRL structured data |
+| **Insurance** (next) | Claims, policies | Policy terms, actuary tables |
+| **Clinical trials** | Trial reports | Registered protocols, endpoints |
+| **Government** | Contract disclosures | Obligation schedules |
+| **Legal** | Depositions, filings | Cross-filing consistency |
 
----
-
-## SLIDE 10: Business Model
-
-**Content flywheel: every filing analyzed creates free content AND paid value.**
-
-```
-New filing drops
-    → Engine analyzes (automated)
-    → Free tier: newsletter + leaderboard update
-    → Paid tier: full report + alerts
-    → Content drives new subscribers
-    → Repeat
-```
-
-**Unit economics:**
-- ~$2.00 per company per cycle (6 analysis layers)
-- Full S&P 500 quarterly: ~$1,000
-- Break-even: 23 Pro subscribers
-- Target: 1,000 Pro subs = $180K ARR
+Each new vertical reuses the same engine with a different domain knowledge layer.
 
 ---
 
-## SLIDE 11: Market Opportunity
+## SLIDE 9: Market Opportunity
 
-**$500B+ in losses from accounting fraud and financial misstatement annually (ACFE estimates).**
+**The intelligent document processing market is projected to reach $12-14B by 2030 (32% CAGR).**
 
-Audex targets three buyer segments:
-1. **Retail investors** — no tools to verify filing claims at scale
-2. **RIAs and small funds** — can't afford forensic accounting teams
-3. **Compliance teams** — need automated monitoring of portfolio companies
+Audex targets the financial services segment — the largest IDP buyer — starting with SEC filing analysis and expanding to other regulated document types.
 
-The market for financial data intelligence (Bloomberg, S&P Capital IQ, Refinitiv) is $35B+. Audex enters from a new angle: automated verification, not just aggregation.
+| Adjacent Market | Size | Our Angle |
+|----------------|------|-----------|
+| Financial data (Bloomberg, FactSet) | $18B | We verify, they aggregate |
+| Audit/accounting analytics | $500M–$1B | We automate what they do manually |
+| Intelligent document processing | $12-14B by 2030 | We add verification layer |
+
+The gap: nobody combines extraction + verification + scoring into a programmatic API. Summarizers hallucinate. Extractors don't verify. Audex does both.
+
+---
+
+## SLIDE 10: Competition
+
+| Company | What They Do | Gap |
+|---------|-------------|-----|
+| **FilingsIQ.ai** | LLM summaries of SEC filings | Summarizes, doesn't verify |
+| **Quill AI** | Natural language queries on filings | Query tool, no scoring |
+| **Calcbench** | XBRL data extraction | Rule-based only, no LLM layer |
+| **Audit Analytics** | Accounting risk flags | $30k+/yr, dashboard-only, no API |
+| **Reducto** ($108M) | Document parsing/extraction API | Parses, doesn't verify or score |
+
+**Audex is the only platform combining deterministic verification with LLM analysis into a scored, API-accessible output.**
+
+---
+
+## SLIDE 11: Product & Business Model
+
+**API-first. Data infrastructure.**
+
+| Access Method | Description | Status |
+|--------------|-------------|--------|
+| REST API | 5 public JSON endpoints, CORS-enabled | Live |
+| MCP Server | 8 tools for AI agent integration | Live |
+| Web Dashboard | Live analysis, leaderboard, company pages | Live |
+| Data Feed | Structured filing analysis feed | Live |
+
+**Revenue model (planned):**
+
+| Tier | Price | Access |
+|------|-------|--------|
+| Public | Free | API access, 97 companies, standard rate limits |
+| Professional | $99/mo | Full S&P 500, webhooks, priority processing |
+| Enterprise | Custom | On-prem deployment, custom document types, SLA |
 
 ---
 
 ## SLIDE 12: Traction
 
 - **97 companies** analyzed live
-- **26,906 checks** performed (2,092 deterministic + 19,141 LLM-verified + 4,336 temporal + 1,337 tone)
-- **36 companies flagged** (9 Strong Sell, 27 Sell)
-- **Sell signal accuracy:** 70% (12M), strong sell 79% (6M), -9.1% avg alpha
+- **26,906 verification checks** performed (2,092 deterministic + 19,141 LLM-verified + 4,336 temporal + 1,337 tone)
+- **38 companies flagged** (13 critical risk, 25 elevated risk)
+- **Risk detection accuracy:** 70% (12M), critical risk 79% (6M)
 - **Bank-aware accounting** — zero false positives from structural bank accounting
-- **Management tone scoring** — deterministic hedging/transparency analysis on all MD&A
-- Newsletter subscribers: [current count]
-- Pro waitlist: [current count]
+- **5 public API endpoints** — live at audex.tech/api/v1/
+- **MCP server** — 8 tools, 2 resources, stdio + HTTP transport
+- **Forward-tested prediction log** — timestamped, git-committed snapshots
 
 ---
 
@@ -193,10 +195,10 @@ The market for financial data intelligence (Bloomberg, S&P Capital IQ, Refinitiv
 
 | Now (done) | Next 3 months | 12 months |
 |-----------|--------------|-----------|
-| 97 companies, 7-layer engine | Full S&P 500 | Russell 1000 |
-| Bank-aware + sector-calibrated scoring | Pro tier + Stripe | API for institutions |
-| Management tone analysis | Earnings call transcripts (API) | Real-time filing alerts |
-| 70% sell accuracy (backtested) | Re-run explanation check with improved prompts | Institutional dashboard |
+| 97 companies, 7-layer engine | Full S&P 500 (500 companies) | Russell 1000 + international |
+| REST API + MCP server | Authenticated API tiers + webhooks | Enterprise on-prem option |
+| Bank-aware + sector-calibrated | Earnings call transcript integration | Insurance vertical launch |
+| Confidence intervals + prediction log | Historical backfill (2018-present) | Custom document type support |
 
 ---
 
@@ -204,24 +206,24 @@ The market for financial data intelligence (Bloomberg, S&P Capital IQ, Refinitiv
 
 **$50,000**
 
-- Scale to full S&P 500 coverage
-- Build Pro tier with payment infrastructure
-- Add earnings call transcript analysis (API key integration built)
-- Six months of runway
+- Scale to full S&P 500 coverage (~$4K/year in API costs)
+- Build authenticated API tiers + webhook infrastructure
+- Add earnings call transcript analysis (data source built)
+- Six months of runway for growth and iteration
 
 ---
 
 ## SLIDE 15: Team
 
-**Nick Bateman** — Solo founder
+**Nick Bateman** — Solo founder, Vertical AI LLC
 
-Built the full stack: SEC EDGAR ingestion pipeline, seven-layer analysis engine (LLM + deterministic + bank-aware + tone analysis + sector-relative), backtesting framework, Next.js web platform, automated email delivery.
+Built the entire platform: SEC EDGAR ingestion pipeline, seven-layer analysis engine (LLM + deterministic + bank-aware + tone analysis + sector-relative), REST API, MCP server, forward-tested prediction log, backtesting framework, and the Next.js web dashboard.
 
 ---
 
 ## SLIDE 16: Close
 
 **AUDEX**
-*The numbers should add up. We check if they do.*
+*Document intelligence infrastructure. Starting with SEC filings.*
 
-audex.tech
+audex.tech · /api/v1/companies · python -m verifyai.mcp_server

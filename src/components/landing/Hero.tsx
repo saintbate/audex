@@ -3,7 +3,6 @@
 export default function Hero() {
   return (
     <section className="relative pt-32 pb-20 px-6 overflow-hidden">
-      {/* Subtle grid background */}
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
@@ -17,54 +16,43 @@ export default function Hero() {
         <div className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 mb-8">
           <span className="h-2 w-2 rounded-full bg-green animate-pulse" />
           <span className="text-xs font-mono text-muted">
-            LIVE — SCANNING Q1 2026 FILINGS
+            LIVE — PROCESSING Q1 2026 FILINGS
           </span>
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
-          AI that reads SEC filings
+          Document intelligence
           <br />
-          <span className="text-accent">
-            and finds what doesn&apos;t add up
-          </span>
+          <span className="text-accent">for SEC filings</span>
         </h1>
 
         <p className="text-lg sm:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
-          Every quarter, public companies file 200-page reports with the SEC.
-          We read every number, cross-reference every claim, and flag the
-          filings where the math doesn&apos;t add up — before the market
-          notices.
+          Extract, verify, and score every claim in every SEC filing —
+          automatically. Seven analysis layers. Structured API output.
+          Machine-readable reliability scores for every public company.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a
-            href="#flags"
+            href="#analysis"
             className="bg-accent text-background px-8 py-3 rounded-lg font-semibold hover:bg-accent-dim transition-colors text-lg"
           >
-            See Latest Red Flags
+            See Live Analysis
           </a>
           <a
-            href="#signup"
+            href="/methodology"
             className="border border-border text-foreground px-8 py-3 rounded-lg font-semibold hover:bg-surface transition-colors text-lg"
           >
-            Get the Free Weekly Report
+            Read the Methodology
           </a>
         </div>
 
-        {/* Stat bar */}
         <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 text-center">
           <div>
             <div className="text-2xl sm:text-3xl font-mono font-bold text-accent">
               97
             </div>
-            <div className="text-xs text-muted mt-1">Companies Scanned</div>
-          </div>
-          <div className="h-8 w-px bg-border hidden sm:block" />
-          <div>
-            <div className="text-2xl sm:text-3xl font-mono font-bold text-red">
-              36
-            </div>
-            <div className="text-xs text-muted mt-1">Red Flags Issued</div>
+            <div className="text-xs text-muted mt-1">Companies Analyzed</div>
           </div>
           <div className="h-8 w-px bg-border hidden sm:block" />
           <div>
@@ -75,10 +63,17 @@ export default function Hero() {
           </div>
           <div className="h-8 w-px bg-border hidden sm:block" />
           <div>
+            <div className="text-2xl sm:text-3xl font-mono font-bold text-accent">
+              5
+            </div>
+            <div className="text-xs text-muted mt-1">API Endpoints</div>
+          </div>
+          <div className="h-8 w-px bg-border hidden sm:block" />
+          <div>
             <div className="text-2xl sm:text-3xl font-mono font-bold text-green">
               70%
             </div>
-            <div className="text-xs text-muted mt-1">Sell Hit Rate</div>
+            <div className="text-xs text-muted mt-1">Risk Detection Accuracy</div>
           </div>
         </div>
       </div>

@@ -39,18 +39,18 @@ export async function generateMetadata({
 }
 
 function signalColor(signal: string) {
-  if (signal.includes("strong_sell")) return "text-red";
-  if (signal.includes("sell")) return "text-red-dim";
-  if (signal.includes("strong_buy")) return "text-green";
-  if (signal.includes("buy")) return "text-green-dim";
+  if (signal.includes("critical_risk")) return "text-red";
+  if (signal.includes("elevated_risk")) return "text-red-dim";
+  if (signal.includes("high_reliability")) return "text-green";
+  if (signal.includes("low_risk")) return "text-green-dim";
   return "text-muted";
 }
 
 function signalBg(signal: string) {
-  if (signal.includes("strong_sell")) return "bg-red/15 border-red/30 text-red";
-  if (signal.includes("sell")) return "bg-red/10 border-red/20 text-red-dim";
-  if (signal.includes("strong_buy")) return "bg-green/15 border-green/30 text-green";
-  if (signal.includes("buy")) return "bg-green/10 border-green/20 text-green-dim";
+  if (signal.includes("critical_risk")) return "bg-red/15 border-red/30 text-red";
+  if (signal.includes("elevated_risk")) return "bg-red/10 border-red/20 text-red-dim";
+  if (signal.includes("high_reliability")) return "bg-green/15 border-green/30 text-green";
+  if (signal.includes("low_risk")) return "bg-green/10 border-green/20 text-green-dim";
   return "bg-surface-2 border-border text-muted";
 }
 

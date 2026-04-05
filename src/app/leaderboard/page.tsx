@@ -25,13 +25,13 @@ interface Report {
 
 function signalBadge(signal: string) {
   const label = signal.replace(/_/g, " ").toUpperCase();
-  if (signal.includes("strong_sell"))
+  if (signal.includes("critical_risk"))
     return <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-red/15 text-red border border-red/30">{label}</span>;
-  if (signal.includes("sell"))
+  if (signal.includes("elevated_risk"))
     return <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-red/10 text-red-dim border border-red/20">{label}</span>;
-  if (signal.includes("strong_buy"))
+  if (signal.includes("high_reliability"))
     return <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-green/15 text-green border border-green/30">{label}</span>;
-  if (signal.includes("buy"))
+  if (signal.includes("low_risk"))
     return <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-green/10 text-green-dim border border-green/20">{label}</span>;
   return <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-surface-2 text-muted border border-border">{label}</span>;
 }
@@ -57,9 +57,9 @@ export default async function LeaderboardPage() {
     ORDER BY anomaly_score DESC
   `) as unknown as Report[];
 
-  const strongSells = reports.filter((r) => r.overall_signal === "strong_sell");
-  const sells = reports.filter((r) => r.overall_signal === "sell");
-  const holds = reports.filter((r) => r.overall_signal === "hold");
+  const criticalRisks = reports.filter((r) => r.overall_signal === "critical_risk");
+  const elevatedRisks = reports.filter((r) => r.overall_signal === "elevated_risk");
+  const baselines = reports.filter((r) => r.overall_signal === "baseline");
 
   return (
     <div className="min-h-screen bg-background">
@@ -71,8 +71,8 @@ export default async function LeaderboardPage() {
           </Link>
           <nav className="flex items-center gap-4 text-sm text-muted">
             <Link href="/track-record" className="hover:text-foreground transition-colors">Track Record</Link>
-            <Link href="/#signup" className="bg-accent text-background px-4 py-1.5 rounded font-medium hover:bg-accent-dim transition-colors">
-              Get the Report
+            <Link href="/#api" className="bg-accent text-background px-4 py-1.5 rounded font-medium hover:bg-accent-dim transition-colors">
+              API
             </Link>
           </nav>
         </div>
@@ -89,15 +89,15 @@ export default async function LeaderboardPage() {
         <div className="flex gap-4 mb-8 text-sm font-mono">
           <div className="flex items-center gap-2">
             <span className="h-3 w-3 rounded-full bg-red" />
-            <span className="text-muted">Strong Sell ({strongSells.length})</span>
+            <span className="text-muted">Critical Risk ({criticalRisks.length})</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="h-3 w-3 rounded-full bg-red/50" />
-            <span className="text-muted">Sell ({sells.length})</span>
+            <span className="text-muted">Elevated Risk ({elevatedRisks.length})</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="h-3 w-3 rounded-full bg-surface-2 border border-border" />
-            <span className="text-muted">Hold ({holds.length})</span>
+            <span className="text-muted">Baseline ({baselines.length})</span>
           </div>
         </div>
 

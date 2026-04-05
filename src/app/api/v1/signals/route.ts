@@ -53,7 +53,7 @@ export async function GET(request: NextRequest) {
   }));
 
   summary.sort((a, b) => {
-    const order = ["strong_sell", "sell", "hold", "buy", "strong_buy"];
+    const order = ["critical_risk", "elevated_risk", "baseline", "low_risk", "high_reliability"];
     return order.indexOf(a.signal) - order.indexOf(b.signal);
   });
 

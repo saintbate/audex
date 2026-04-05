@@ -8,11 +8,11 @@ export const metadata: Metadata = {
 };
 
 const BACKTEST_DATA = [
-  { signal: "Strong Buy", count: 8, alpha: "+3.06%", hitRate: "62.5%", avgReturn: "+14.2%", color: "text-green" },
-  { signal: "Buy", count: 14, alpha: "+16.94%", hitRate: "57.1%", avgReturn: "+22.8%", color: "text-green" },
-  { signal: "Hold", count: 89, alpha: "-9.95%", hitRate: "—", avgReturn: "+4.3%", color: "text-muted" },
-  { signal: "Sell", count: 32, alpha: "-5.45%", hitRate: "59.4%", avgReturn: "-1.2%", color: "text-red-dim" },
-  { signal: "Strong Sell", count: 15, alpha: "-9.29%", hitRate: "66.7%", avgReturn: "-5.1%", color: "text-red" },
+  { signal: "High Reliability", count: 8, alpha: "+3.06%", hitRate: "62.5%", avgReturn: "+14.2%", color: "text-green" },
+  { signal: "Low Risk", count: 14, alpha: "+16.94%", hitRate: "57.1%", avgReturn: "+22.8%", color: "text-green" },
+  { signal: "Baseline", count: 89, alpha: "-9.95%", hitRate: "—", avgReturn: "+4.3%", color: "text-muted" },
+  { signal: "Elevated Risk", count: 32, alpha: "-5.45%", hitRate: "59.4%", avgReturn: "-1.2%", color: "text-red-dim" },
+  { signal: "Critical Risk", count: 15, alpha: "-9.29%", hitRate: "66.7%", avgReturn: "-5.1%", color: "text-red" },
 ];
 
 const WINDOWS = [
@@ -27,8 +27,8 @@ const STATS = [
   { label: "Total Observations", value: "158" },
   { label: "Market Regimes", value: "4" },
   { label: "Buy-Sell Spread", value: "+23.4pp" },
-  { label: "Sell Hit Rate", value: "66%" },
-  { label: "Avg Sell Alpha vs SPY", value: "-9.5%" },
+  { label: "Risk Flag Hit Rate", value: "66%" },
+  { label: "Avg Risk Alpha vs SPY", value: "-9.5%" },
 ];
 
 export default function TrackRecordPage() {
@@ -42,8 +42,8 @@ export default function TrackRecordPage() {
           </Link>
           <nav className="flex items-center gap-4 text-sm text-muted">
             <Link href="/leaderboard" className="hover:text-foreground transition-colors">Leaderboard</Link>
-            <Link href="/#signup" className="bg-accent text-background px-4 py-1.5 rounded font-medium hover:bg-accent-dim transition-colors">
-              Get the Report
+            <Link href="/#api" className="bg-accent text-background px-4 py-1.5 rounded font-medium hover:bg-accent-dim transition-colors">
+              API
             </Link>
           </nav>
         </div>
@@ -54,7 +54,7 @@ export default function TrackRecordPage() {
           <h1 className="text-3xl sm:text-4xl font-bold mb-4">Track Record</h1>
           <p className="text-muted text-lg max-w-2xl mx-auto">
             Backtested across 97 S&P 500 companies and 4 market regimes.
-            Our sell signals averaged{" "}
+            Elevated and critical risk filings averaged{" "}
             <span className="text-red font-mono font-semibold">-9.5% alpha</span> vs SPY
             with a{" "}
             <span className="text-accent font-mono font-semibold">66% hit rate</span>.
@@ -143,15 +143,15 @@ export default function TrackRecordPage() {
         </div>
 
         <div className="border border-accent/20 rounded-lg bg-surface p-8 text-center">
-          <h3 className="text-lg font-bold mb-2">The signal is real. Get it weekly.</h3>
+          <h3 className="text-lg font-bold mb-2">Access this data programmatically</h3>
           <p className="text-muted text-sm mb-6">
-            Free weekly report with the top 5 red flags from new SEC filings.
+            All Audex data is available via public JSON API and MCP server.
           </p>
           <Link
-            href="/#signup"
+            href="/#api"
             className="inline-block bg-accent text-background px-8 py-3 rounded-lg font-semibold hover:bg-accent-dim transition-colors"
           >
-            Subscribe Free
+            Explore the API
           </Link>
         </div>
 

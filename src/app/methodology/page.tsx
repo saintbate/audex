@@ -82,11 +82,11 @@ const TOLERANCES = [
 ];
 
 const SIGNALS = [
-  { signal: "Strong Sell", criteria: "risk >= 35 AND anomaly >= 40", color: "text-red", bg: "bg-red/10" },
-  { signal: "Sell", criteria: "risk >= 20 OR (anomaly >= 30 AND quality < 30)", color: "text-red-dim", bg: "bg-red/5" },
-  { signal: "Hold", criteria: "Does not meet buy or sell criteria", color: "text-muted", bg: "bg-surface-2" },
-  { signal: "Buy", criteria: "risk <= 8 AND quality >= 55 AND anomaly < 22", color: "text-green-dim", bg: "bg-green/5" },
-  { signal: "Strong Buy", criteria: "risk <= 3 AND quality >= 70 AND anomaly < 12", color: "text-green", bg: "bg-green/10" },
+  { signal: "Critical Risk", criteria: "risk >= 35 AND anomaly >= 40", color: "text-red", bg: "bg-red/10" },
+  { signal: "Elevated Risk", criteria: "risk >= 20 OR (anomaly >= 30 AND quality < 30)", color: "text-red-dim", bg: "bg-red/5" },
+  { signal: "Baseline", criteria: "Does not meet low-risk or elevated-risk criteria", color: "text-muted", bg: "bg-surface-2" },
+  { signal: "Low Risk", criteria: "risk <= 8 AND quality >= 55 AND anomaly < 22", color: "text-green-dim", bg: "bg-green/5" },
+  { signal: "High Reliability", criteria: "risk <= 3 AND quality >= 70 AND anomaly < 12", color: "text-green", bg: "bg-green/10" },
 ];
 
 export default function MethodologyPage() {
@@ -194,7 +194,7 @@ export default function MethodologyPage() {
 
         {/* Signal Classification */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold mb-6">Signal Classification</h2>
+          <h2 className="text-2xl font-bold mb-6">Reliability Classification</h2>
           <div className="border border-border rounded-lg bg-surface overflow-hidden">
             <table className="w-full">
               <thead>
@@ -299,7 +299,7 @@ export default function MethodologyPage() {
           <h2 className="text-2xl font-bold mb-4">Known Limitations</h2>
           <div className="border border-amber/20 rounded-lg bg-surface p-6 space-y-3">
             {[
-              "Buy signal is not predictive (41% accuracy). This is a risk filter, not a stock picker.",
+              "Low risk / high reliability tiers indicate clean filings, not investment recommendations.",
               "3 of 7 analysis layers use LLMs, which introduces non-determinism between runs.",
               "Currently covers 97 S&P 500 companies, not the full index.",
               "Analysis runs in batch, not real-time (EDGAR monitor in development).",

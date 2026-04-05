@@ -2,29 +2,29 @@
 
 const BACKTEST_DATA = [
   {
-    signal: "Strong Sell",
+    signal: "Critical Risk",
     n: 14,
     alpha: "-7.7%",
     hitRate: "71%",
     color: "text-red",
   },
-  { signal: "Sell", n: 35, alpha: "-5.3%", hitRate: "69%", color: "text-red" },
+  { signal: "Elevated Risk", n: 35, alpha: "-5.3%", hitRate: "69%", color: "text-red" },
   {
-    signal: "Hold",
+    signal: "Baseline",
     n: 32,
     alpha: "-4.5%",
     hitRate: "—",
     color: "text-muted",
   },
   {
-    signal: "Buy",
+    signal: "Low Risk",
     n: 12,
     alpha: "-9.2%",
     hitRate: "42%",
     color: "text-muted",
   },
   {
-    signal: "Strong Buy",
+    signal: "High Reliability",
     n: 4,
     alpha: "+6.8%",
     hitRate: "50%",
@@ -38,12 +38,12 @@ export default function BacktestProof() {
       <div className="mx-auto max-w-4xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            The sell signal works
+            Verification performance
           </h2>
           <p className="text-muted text-lg max-w-2xl mx-auto">
             Backtested across 97 companies with bank-aware, sector-calibrated
-            scoring and management tone analysis. Sell signals underperform SPY
-            by{" "}
+            scoring and management tone analysis. Companies flagged as elevated
+            or critical risk underperform by{" "}
             <span className="text-red font-mono font-semibold">
               -9.1% alpha
             </span>{" "}
@@ -51,11 +51,7 @@ export default function BacktestProof() {
             <span className="text-accent font-mono font-semibold">
               70% accuracy
             </span>
-            . Strong sell signals hit{" "}
-            <span className="text-accent font-mono font-semibold">
-              79% at 6 months
-            </span>
-            . This is a risk filter — it tells you what to avoid.
+            . Document reliability scores correlate with forward outcomes.
           </p>
         </div>
 
@@ -65,7 +61,7 @@ export default function BacktestProof() {
             <div className="h-3 w-3 rounded-full bg-amber/60" />
             <div className="h-3 w-3 rounded-full bg-green/60" />
             <span className="ml-3 text-xs font-mono text-muted">
-              backtest_results — 97 companies, 12-month holding period
+              verification_accuracy — 97 companies, 12-month forward period
             </span>
           </div>
 
@@ -73,9 +69,9 @@ export default function BacktestProof() {
             <table className="w-full">
               <thead>
                 <tr className="text-left text-xs font-mono text-muted border-b border-border">
-                  <th className="px-6 py-3">SIGNAL</th>
+                  <th className="px-6 py-3">RELIABILITY TIER</th>
                   <th className="px-6 py-3 text-right">N</th>
-                  <th className="px-6 py-3 text-right">12M ALPHA VS SPY</th>
+                  <th className="px-6 py-3 text-right">12M FORWARD ALPHA</th>
                   <th className="px-6 py-3 text-right">HIT RATE</th>
                 </tr>
               </thead>
@@ -103,9 +99,9 @@ export default function BacktestProof() {
 
           <div className="px-6 py-3 border-t border-border bg-surface-2">
             <p className="text-xs font-mono text-muted">
-              Hit rate = % where signal direction matched 12-month outcome vs
-              SPY. Data: 2020–2026, 5 filing windows. Buy signal is not
-              predictive — a clean filing ≠ a good stock.
+              Hit rate = % where reliability tier predicted 12-month direction vs
+              SPY. Data: 2020–2026, 5 filing windows. Low risk / high reliability
+              tiers indicate clean filings, not investment recommendations.
             </p>
           </div>
         </div>
