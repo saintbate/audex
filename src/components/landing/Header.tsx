@@ -13,16 +13,8 @@ export default function Header() {
             xmlns="http://www.w3.org/2000/svg"
             className="text-accent"
           >
-            <path d="M12 2.5A9.5 9.5 0 0 1 19.2 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M21.5 12A9.5 9.5 0 0 1 18 19.2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M12 21.5A9.5 9.5 0 0 1 4.8 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M2.5 12A9.5 9.5 0 0 1 6 4.8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" />
-            <circle cx="12" cy="12" r="1.5" fill="currentColor" />
-            <line x1="12" y1="0.5" x2="12" y2="3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <line x1="12" y1="20.5" x2="12" y2="23.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <line x1="0.5" y1="12" x2="3.5" y2="12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <line x1="20.5" y1="12" x2="23.5" y2="12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M12 3L22 21H2L12 3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+            <path d="M12 10L16.5 18.5H7.5L12 10Z" stroke="currentColor" strokeWidth="1" strokeLinejoin="round" opacity="0.4" />
           </svg>
           <span className="font-mono text-sm font-semibold tracking-wider text-foreground">
             AUDEX
