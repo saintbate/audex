@@ -106,6 +106,16 @@ export default function Architecture() {
             probabilistic signal from a defensible claim.
           </p>
         </div>
+
+        <div className="mt-8 text-center">
+          <a
+            href="/case-study"
+            className="inline-flex items-center gap-2 text-sm text-accent hover:text-white transition-colors font-medium"
+          >
+            Read: How Audex caught a $17.7B segment discrepancy in Intel&apos;s 10-K
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
       </div>
     </section>
   );
