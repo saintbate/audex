@@ -1,12 +1,8 @@
 import Header from "@/components/landing/Header";
 import Hero from "@/components/landing/Hero";
-import BacktestProof from "@/components/landing/BacktestProof";
-import RecentFlags from "@/components/landing/RecentFlags";
-import HowItWorks from "@/components/landing/HowItWorks";
-import DeveloperCTA from "@/components/landing/NewsletterSignup";
-import APIShowcase from "@/components/landing/Pricing";
+import Architecture from "@/components/landing/Architecture";
+import EarlyAccess from "@/components/landing/EarlyAccess";
 import Footer from "@/components/landing/Footer";
-
 
 export default function Home() {
   return (
@@ -14,11 +10,8 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
-        <RecentFlags />
-        <HowItWorks />
-        <BacktestProof />
-        <APIShowcase />
-        <DeveloperCTA />
+        <Architecture />
+        <EarlyAccess />
       </main>
       <Footer />
     </>

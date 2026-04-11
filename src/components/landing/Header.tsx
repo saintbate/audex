@@ -3,7 +3,7 @@
 export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
-      <div className="mx-auto max-w-6xl flex items-center justify-between px-6 py-4">
+      <div className="mx-auto max-w-4xl flex items-center justify-between px-6 py-4">
         <a href="/" className="flex items-center gap-2">
           <svg
             width="24"
@@ -28,23 +28,12 @@ export default function Header() {
             AUDEX
           </span>
         </a>
-        <nav className="hidden sm:flex items-center gap-6 text-sm text-muted">
-          <a href="/leaderboard" className="hover:text-foreground transition-colors">
-            Leaderboard
-          </a>
-          <a href="/methodology" className="hover:text-foreground transition-colors">
-            Methodology
-          </a>
-          <a href="/track-record" className="hover:text-foreground transition-colors">
-            Track Record
-          </a>
-          <a
-            href="#api"
-            className="bg-accent text-background px-4 py-1.5 rounded font-medium hover:bg-accent-dim transition-colors"
-          >
-            API
-          </a>
-        </nav>
+        <a
+          href="#access"
+          className="text-sm text-muted hover:text-foreground transition-colors font-mono"
+        >
+          Request Early Access
+        </a>
       </div>
     </header>
   );

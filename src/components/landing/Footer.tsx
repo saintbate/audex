@@ -3,7 +3,7 @@
 export default function Footer() {
   return (
     <footer className="border-t border-border py-10 px-6">
-      <div className="mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="mx-auto max-w-4xl flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <svg
             width="18"
@@ -27,27 +27,12 @@ export default function Footer() {
           <span className="font-mono text-xs text-muted">AUDEX</span>
         </div>
 
-        <p className="text-xs text-muted text-center max-w-lg">
-          Audex provides automated document intelligence for public SEC filings.
-          Analysis is for informational and research purposes only.
-          A product of Vertical AI LLC.
+        <p className="text-xs text-muted text-center max-w-md">
+          Audex produces verified assertions from SEC filings for research
+          purposes. Not financial advice. A product of Vertical AI LLC.
         </p>
 
-        <div className="flex items-center gap-4 text-xs text-muted">
-          <a href="/methodology" className="hover:text-foreground transition-colors">
-            Methodology
-          </a>
-          <span className="text-border">·</span>
-          <a href="/api/v1/methodology" className="hover:text-foreground transition-colors">
-            API
-          </a>
-          <span className="text-border">·</span>
-          <a href="https://x.com/audextech" className="hover:text-foreground transition-colors">
-            X / Twitter
-          </a>
-          <span className="text-border">·</span>
-          <span>© {new Date().getFullYear()}</span>
-        </div>
+        <span className="text-xs text-muted">© {new Date().getFullYear()}</span>
       </div>
     </footer>
   );
